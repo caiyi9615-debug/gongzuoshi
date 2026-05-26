@@ -20,16 +20,112 @@
 
 <section class="container fade"><h2 class="title">价格与定金</h2><p class="sub">定金可抵扣尾款。若因我无法完成订单，定金可退还。</p><table class="table"><tr><th>服务类别</th><th>起步价格</th><th>定金</th></tr><tr><td>PPT美化</td><td>9.9元起</td><td>5元</td></tr><tr><td>Word排版</td><td>6.9元起</td><td>3元</td></tr><tr><td>简历优化</td><td>9.9元起</td><td>5元</td></tr><tr><td>学习计划网页</td><td>19.9元起</td><td>9.9元</td></tr><tr><td>资料整理</td><td>9.9元起</td><td>5元</td></tr></table><div class="notice">提交需求后会生成专属订单链接，客户打开链接即可查看进度和支付定金，不需要手动复制订单号。</div></section>
 
-<section class="container fade" id="order"><h2 class="title">填写需求</h2><p class="sub">提交后会自动生成专属订单进度链接，并展示微信/支付宝收款码。</p><div class="box"><form id="orderForm"><div class="grid">
+<section class="container fade" id="order"><h2 class="title">填写需求</h2><p class="sub">提交后会自动生成专属订单进度链接，并展示微信/支付宝收款码。</p><div class="box"><form id="orderForm" onsubmit="return false;"><div class="grid">
 <div><label>称呼</label><input id="name" placeholder="例如：张同学" required></div><div><label>联系方式</label><input id="contact" placeholder="微信 / QQ / 手机号" required></div>
 <div><label>服务类型</label><select id="service" required><option value="">请选择</option><option>PPT美化</option><option>Word排版</option><option>简历优化</option><option>学习计划网页</option><option>课程资料整理</option><option>网页二维码制作</option><option>其他需求</option></select></div><div><label>截止时间</label><input id="deadline" placeholder="例如：今晚 / 明天下午 / 周五前"></div>
-<div class="full"><label>具体需求</label><textarea id="details" placeholder="请写清页数、课程、要求、风格、是否加急等。" required></textarea></div><div class="full"><button type="submit">提交需求并生成进度链接</button></div>
+<div class="full"><label>具体需求</label><textarea id="details" placeholder="请写清页数、课程、要求、风格、是否加急等。" required></textarea></div><div class="full"><button type="button" id="submitOrderBtn" onclick="submitOrder()">提交需求并生成进度链接</button></div>
 </div></form><div id="result" class="result"></div></div></section>
 
 <section class="container fade"><h2 class="title">联系方式</h2><div class="box" style="text-align:center"><p>微信：17781762502</p><p>QQ：2241037918</p><p>邮箱：2241037918@qq.com</p><p><a href="/track">查询订单进度</a></p></div></section><div class="footer">© 2026 小蔡同学文档工作室</div>
 <script>
-const form=document.getElementById("orderForm"),result=document.getElementById("result");
-function showFade(){document.querySelectorAll(".fade").forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-80)el.classList.add("show")})}addEventListener("scroll",showFade);showFade();
-async function copyText(t){try{await navigator.clipboard.writeText(t);alert("已复制链接")}catch(e){prompt("复制这个链接保存：",t)}}
-form.addEventListener("submit",async e=>{e.preventDefault();let data={name:name.value.trim(),contact:contact.value.trim(),service:service.value,deadline:deadline.value.trim(),details:details.value.trim()};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请填写完整。";return}try{let r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}),res=await r.json();if(res.success){let o=res.order,link=location.origin+o.trackPath;result.className="result success";result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;form.reset()}else{result.className="result error";result.textContent=res.message||"提交失败"}}catch(err){result.className="result error";result.textContent="提交失败，请直接联系微信17781762502。"}});
+const result = document.getElementById("result");
+
+function showFade(){
+  document.querySelectorAll(".fade").forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 80){
+      el.classList.add("show");
+    }
+  });
+}
+window.addEventListener("scroll", showFade);
+showFade();
+
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("已复制链接");
+  }catch(e){
+    prompt("复制这个链接保存：", text);
+  }
+}
+
+function setButtonLoading(isLoading){
+  const btn = document.getElementById("submitOrderBtn");
+  if(!btn) return;
+  btn.disabled = isLoading;
+  btn.textContent = isLoading ? "正在提交，请稍等..." : "提交需求并生成进度链接";
+}
+
+function getValue(id){
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+
+async function submitOrder(){
+  setButtonLoading(true);
+
+  const data = {
+    name: getValue("name"),
+    contact: getValue("contact"),
+    service: getValue("service"),
+    deadline: getValue("deadline"),
+    details: getValue("details")
+  };
+
+  if(!data.name || !data.contact || !data.service || !data.details){
+    result.className = "result error";
+    result.textContent = "请把称呼、联系方式、服务类型和具体需求填写完整。";
+    setButtonLoading(false);
+    return;
+  }
+
+  result.className = "result success";
+  result.textContent = "正在提交订单，请稍等...";
+
+  try{
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    });
+
+    let res;
+    try{
+      res = await response.json();
+    }catch(jsonErr){
+      throw new Error("后端没有返回正确数据，可能 Render 还没部署成功。");
+    }
+
+    if(!response.ok || !res.success){
+      throw new Error(res.message || "提交失败，请稍后重试。");
+    }
+
+    const o = res.order;
+    const link = location.origin + o.trackPath;
+
+    result.className = "result success";
+    result.innerHTML = `
+      <b>提交成功！</b>你的专属订单链接已生成：
+      <div class="code">${link}</div>
+      <button type="button" onclick="copyText('${link}')">复制订单链接</button>
+      <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a>
+      <p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，可抵扣尾款。付款建议备注：${o.orderNo}</p>
+      <div class="paygrid">
+        <div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div>
+        <div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div>
+      </div>
+    `;
+
+    const form = document.getElementById("orderForm");
+    if(form) form.reset();
+  }catch(err){
+    result.className = "result error";
+    result.innerHTML = `
+      提交失败：${err.message || "未知错误"}<br>
+      请确认你访问的是 Render 的 onrender.com 网站，而不是 GitHub Pages 静态网站；也可以直接联系微信 17781762502。
+    `;
+  }finally{
+    setButtonLoading(false);
+  }
+}
 </script></body></html>
