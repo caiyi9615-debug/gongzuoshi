@@ -1,8 +1,13 @@
 {
-  "name": "caistudio-fullstack",
-  "version": "1.0.0",
-  "description": "小蔡同学文档工作室：前端展示页 + 简单后端下单表单",
+  "name": "caistudio-pro-admin",
+  "version": "2.0.0",
+  "description": "小蔡同学文档工作室：美观后台 + 密码保护 + 订单管理",
   "main": "server.js",
-  "scripts": {"start": "node server.js", "dev": "node server.js"},
-  "dependencies": {"express": "^4.18.2"}
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
