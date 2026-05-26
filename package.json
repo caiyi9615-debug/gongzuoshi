@@ -1,7 +1,7 @@
 {
-  "name": "caistudio-pro-admin",
-  "version": "2.0.0",
-  "description": "小蔡同学文档工作室：美观后台 + 密码保护 + 订单管理",
+  "name": "caistudio-customer-track",
+  "version": "3.0.0",
+  "description": "小蔡同学文档工作室：前台下单 + 后台管理 + 顾客订单进度查询",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

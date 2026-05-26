@@ -35,9 +35,10 @@
     input:focus, select:focus, textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
     button { border: none; background: #2563eb; color: white; padding: 13px 28px; border-radius: 999px; font-weight: bold; font-size: 16px; cursor: pointer; }
     button:hover { background: #1d4ed8; }
-    .result { margin-top: 16px; padding: 14px; border-radius: 10px; display: none; }
+    .result { margin-top: 16px; padding: 16px; border-radius: 12px; display: none; line-height: 1.8; }
     .result.success { display: block; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
     .result.error { display: block; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .order-code { background: white; border: 1px dashed #10b981; border-radius: 10px; padding: 10px; margin: 10px 0; color: #065f46; font-weight: bold; word-break: break-all; }
     .contact { text-align: center; padding: 35px 20px; }
     .contact p { margin: 10px 0; font-size: 17px; }
     footer { text-align: center; padding: 25px; color: #777; font-size: 14px; }
@@ -55,6 +56,7 @@
     <h1>小蔡同学文档工作室</h1>
     <p>提供大学生PPT美化、Word排版、简历优化、学习计划网页制作、课程资料整理等服务。价格学生友好，适合课程汇报、实验报告、实习申请和期末复习使用。</p>
     <a href="#order" class="btn">填写需求</a>
+    <a href="/track" class="btn secondary">查询订单进度</a>
     <a href="#service-detail" class="btn secondary">查看服务</a>
   </header>
 
@@ -115,7 +117,7 @@
 
   <div class="container" id="order">
     <h2 class="section-title">填写需求</h2>
-    <p class="section-subtitle">提交后我会尽快根据你的需求联系你。也可以直接通过微信、QQ、邮箱联系我。</p>
+    <p class="section-subtitle">提交后会生成订单号。保存订单号和联系方式，即可在“查询订单进度”页面查看进度。</p>
     <div class="form-box">
       <form id="orderForm">
         <div class="form-grid">
@@ -139,6 +141,7 @@
       <p><strong>QQ：</strong>2241037918</p>
       <p><strong>邮箱：</strong>2241037918@qq.com</p>
       <p>添加时可以备注：PPT / Word / 简历 / 网页制作</p>
+      <p><a href="/track" style="color:#2563eb;font-weight:bold;">查询订单进度</a></p>
     </div>
   </div>
 
@@ -147,6 +150,7 @@
   <script>
     const form = document.getElementById("orderForm");
     const result = document.getElementById("result");
+
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       const data = {
@@ -156,21 +160,30 @@
         deadline: form.deadline.value.trim(),
         details: form.details.value.trim()
       };
+
       if (!data.name || !data.contact || !data.service || !data.details) {
         result.className = "result error";
         result.textContent = "请把必填信息填写完整。";
         return;
       }
+
       try {
         const response = await fetch("/api/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
+
         const res = await response.json();
+
         if (res.success) {
+          const orderId = res.order.orderNo || res.order.id;
           result.className = "result success";
-          result.textContent = "提交成功！我会尽快根据你的需求联系你。";
+          result.innerHTML = `
+            提交成功！请保存下面的订单号，后续可查询订单进度。
+            <div class="order-code">订单号：${orderId}</div>
+            查询方式：点击 <a href="/track?orderNo=${encodeURIComponent(orderId)}" style="color:#047857;font-weight:bold;">订单进度查询页面</a>，输入订单号和联系方式即可查看。
+          `;
           form.reset();
         } else {
           result.className = "result error";

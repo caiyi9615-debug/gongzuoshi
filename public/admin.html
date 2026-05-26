@@ -6,429 +6,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
-      --bg: #eef4ff;
-      --panel: rgba(255,255,255,.86);
-      --white: #fff;
-      --text: #172033;
-      --muted: #64748b;
-      --blue: #2563eb;
-      --blue2: #1e40af;
-      --green: #16a34a;
-      --yellow: #d97706;
-      --red: #dc2626;
-      --purple: #7c3aed;
-      --line: #e2e8f0;
-      --shadow: 0 22px 60px rgba(30,64,175,.14);
-      --radius: 24px;
+      --bg: #eef4ff; --panel: rgba(255,255,255,.86); --white: #fff; --text: #172033; --muted: #64748b;
+      --blue: #2563eb; --blue2: #1e40af; --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed;
+      --line: #e2e8f0; --shadow: 0 22px 60px rgba(30,64,175,.14); --radius: 24px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft YaHei", Arial, sans-serif; }
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(59,130,246,.20), transparent 32%),
-        radial-gradient(circle at 86% 18%, rgba(124,58,237,.14), transparent 28%),
-        linear-gradient(135deg, #f8fbff, #eef4ff);
+      background: radial-gradient(circle at 10% 10%, rgba(59,130,246,.20), transparent 32%),
+                  radial-gradient(circle at 86% 18%, rgba(124,58,237,.14), transparent 28%),
+                  linear-gradient(135deg, #f8fbff, #eef4ff);
       color: var(--text);
     }
-
-    .login-page {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-
+    .login-page { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
     .login-card {
-      width: min(460px, 100%);
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.75);
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
+      width: min(460px, 100%); background: rgba(255,255,255,.78); backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.75); border-radius: 32px; box-shadow: var(--shadow); padding: 34px; position: relative; overflow: hidden;
     }
-
-    .login-card::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      right: -90px;
-      top: -110px;
-      background: linear-gradient(135deg, rgba(37,99,235,.22), rgba(124,58,237,.20));
-      border-radius: 50%;
-    }
-
-    .brand {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
-    }
-
-    .logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 24px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      box-shadow: 0 14px 30px rgba(37,99,235,.28);
-    }
-
+    .login-card::before { content: ""; position: absolute; width: 260px; height: 260px; right: -90px; top: -110px; background: linear-gradient(135deg, rgba(37,99,235,.22), rgba(124,58,237,.20)); border-radius: 50%; }
+    .brand { position: relative; display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+    .logo { width: 52px; height: 52px; border-radius: 18px; display: grid; place-items: center; color: white; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #2563eb, #1e40af); box-shadow: 0 14px 30px rgba(37,99,235,.28); }
     .brand h1 { font-size: 24px; color: #1e3a8a; }
     .brand p { color: var(--muted); font-size: 14px; margin-top: 4px; }
-
     .input-group { margin: 18px 0; position: relative; }
     label { display: block; font-size: 14px; color: #1e3a8a; font-weight: 800; margin-bottom: 8px; }
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.92);
-      border-radius: 16px;
-      padding: 13px 14px;
-      outline: none;
-      font-size: 14px;
-      color: var(--text);
-      transition: .2s;
-    }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); background: rgba(255,255,255,.92); border-radius: 16px; padding: 13px 14px; outline: none; font-size: 14px; color: var(--text); transition: .2s; }
     textarea { min-height: 100px; resize: vertical; }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(37,99,235,.75);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.10);
-    }
-
-    .primary-btn {
-      border: none;
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 18px;
-      color: white;
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      font-weight: 900;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(37,99,235,.22);
-      transition: .2s;
-    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(37,99,235,.75); box-shadow: 0 0 0 4px rgba(37,99,235,.10); }
+    .primary-btn { border: none; width: 100%; padding: 14px 18px; border-radius: 18px; color: white; background: linear-gradient(135deg, #2563eb, #1e40af); font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 14px 30px rgba(37,99,235,.22); transition: .2s; }
     .primary-btn:hover { transform: translateY(-1px); box-shadow: 0 18px 34px rgba(37,99,235,.27); }
-
-    .hint {
-      margin-top: 18px;
-      padding: 12px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 16px;
-      color: #1e40af;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
+    .hint { margin-top: 18px; padding: 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 16px; color: #1e40af; font-size: 13px; line-height: 1.7; }
     .app { display: none; min-height: 100vh; }
     .app.show { display: grid; grid-template-columns: 260px 1fr; }
-
-    .sidebar {
-      padding: 24px 18px;
-      background: rgba(255,255,255,.72);
-      border-right: 1px solid rgba(226,232,240,.85);
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0;
-      height: 100vh;
-    }
-
+    .sidebar { padding: 24px 18px; background: rgba(255,255,255,.72); border-right: 1px solid rgba(226,232,240,.85); backdrop-filter: blur(18px); position: sticky; top: 0; height: 100vh; }
     .side-brand { display: flex; gap: 12px; align-items: center; margin-bottom: 28px; }
     .side-brand .logo { width: 44px; height: 44px; border-radius: 15px; font-size: 20px; }
     .side-brand h2 { font-size: 18px; color: #1e3a8a; }
     .side-brand span { font-size: 12px; color: var(--muted); }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      color: #334155;
-      border-radius: 16px;
-      margin-bottom: 8px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .nav-item.active, .nav-item:hover {
-      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(124,58,237,.08));
-      color: #1e40af;
-    }
-
-    .side-bottom {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 20px;
-    }
-
-    .small-btn, .danger-btn, .ghost-btn {
-      border: none;
-      border-radius: 14px;
-      padding: 10px 14px;
-      cursor: pointer;
-      font-weight: 900;
-      transition: .2s;
-      white-space: nowrap;
-    }
-    .small-btn { background: #2563eb; color: white; }
-    .small-btn:hover { background: #1d4ed8; }
-    .danger-btn { background: #fee2e2; color: #b91c1c; }
-    .danger-btn:hover { background: #fecaca; }
-    .ghost-btn { background: #f1f5f9; color: #334155; }
-    .ghost-btn:hover { background: #e2e8f0; }
-
-    .main {
-      padding: 26px;
-      min-width: 0;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 13px 14px; color: #334155; border-radius: 16px; margin-bottom: 8px; font-weight: 800; cursor: pointer; transition: .2s; }
+    .nav-item.active, .nav-item:hover { background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(124,58,237,.08)); color: #1e40af; }
+    .side-bottom { position: absolute; left: 18px; right: 18px; bottom: 20px; }
+    .small-btn, .danger-btn, .ghost-btn { border: none; border-radius: 14px; padding: 10px 14px; cursor: pointer; font-weight: 900; transition: .2s; white-space: nowrap; }
+    .small-btn { background: #2563eb; color: white; } .small-btn:hover { background: #1d4ed8; }
+    .danger-btn { background: #fee2e2; color: #b91c1c; } .danger-btn:hover { background: #fecaca; }
+    .ghost-btn { background: #f1f5f9; color: #334155; } .ghost-btn:hover { background: #e2e8f0; }
+    .main { padding: 26px; min-width: 0; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 24px; }
     .title h1 { font-size: 28px; color: #0f172a; }
     .title p { color: var(--muted); margin-top: 5px; }
-
     .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(150px, 1fr));
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,.75);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 34px rgba(30,64,175,.08);
-    }
-
+    .stats { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 16px; margin-bottom: 18px; }
+    .stat { background: rgba(255,255,255,.78); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.75); border-radius: var(--radius); padding: 18px; box-shadow: 0 10px 34px rgba(30,64,175,.08); }
     .stat span { color: var(--muted); font-size: 13px; font-weight: 800; }
     .stat strong { display: block; font-size: 28px; margin-top: 6px; }
-    .stat.blue strong { color: var(--blue); }
-    .stat.yellow strong { color: var(--yellow); }
-    .stat.green strong { color: var(--green); }
-    .stat.red strong { color: var(--red); }
-    .stat.purple strong { color: var(--purple); }
-
-    .toolbar {
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,255,255,.75);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 34px rgba(30,64,175,.08);
-      margin-bottom: 18px;
-    }
-
-    .filter-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr auto auto;
-      gap: 12px;
-      align-items: end;
-    }
-
-    .orders {
-      display: grid;
-      gap: 14px;
-    }
-
-    .order-card {
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(255,255,255,.75);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: 0 10px 34px rgba(30,64,175,.08);
-      transition: .2s;
-    }
+    .stat.blue strong { color: var(--blue); } .stat.yellow strong { color: var(--yellow); } .stat.green strong { color: var(--green); } .stat.red strong { color: var(--red); } .stat.purple strong { color: var(--purple); }
+    .toolbar { background: rgba(255,255,255,.78); border: 1px solid rgba(255,255,255,.75); border-radius: var(--radius); padding: 18px; box-shadow: 0 10px 34px rgba(30,64,175,.08); margin-bottom: 18px; }
+    .filter-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr auto auto; gap: 12px; align-items: end; }
+    .orders { display: grid; gap: 14px; }
+    .order-card { background: rgba(255,255,255,.88); border: 1px solid rgba(255,255,255,.75); border-radius: 24px; padding: 18px; box-shadow: 0 10px 34px rgba(30,64,175,.08); transition: .2s; }
     .order-card:hover { transform: translateY(-2px); box-shadow: 0 20px 46px rgba(30,64,175,.12); }
-
-    .order-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 12px;
-    }
-
+    .order-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
     .order-title { font-size: 18px; font-weight: 900; color: #1e3a8a; }
     .order-meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-    .badge.new { background: #dbeafe; color: #1d4ed8; }
-    .badge.doing { background: #fef3c7; color: #b45309; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; font-size: 12px; font-weight: 900; white-space: nowrap; }
+    .badge.new, .badge.contacted { background: #dbeafe; color: #1d4ed8; }
+    .badge.quoted, .badge.paid, .badge.doing { background: #fef3c7; color: #b45309; }
     .badge.done { background: #dcfce7; color: #15803d; }
     .badge.cancel { background: #fee2e2; color: #b91c1c; }
-
-    .order-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .info {
-      background: #f8fafc;
-      border: 1px solid #edf2f7;
-      border-radius: 16px;
-      padding: 10px 12px;
-      min-width: 0;
-    }
+    .order-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+    .info { background: #f8fafc; border: 1px solid #edf2f7; border-radius: 16px; padding: 10px 12px; min-width: 0; }
     .info span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 3px; }
     .info b { color: #334155; font-size: 14px; word-break: break-all; }
-
-    .detail {
-      background: linear-gradient(135deg, #f8fafc, #ffffff);
-      border: 1px solid #edf2f7;
-      border-radius: 18px;
-      padding: 12px;
-      color: #334155;
-      white-space: pre-wrap;
-      margin-bottom: 12px;
-      font-size: 14px;
-      max-height: 120px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .empty {
-      text-align: center;
-      background: rgba(255,255,255,.78);
-      border-radius: 24px;
-      padding: 60px 20px;
-      color: var(--muted);
-      box-shadow: 0 10px 34px rgba(30,64,175,.08);
-    }
-
-    .toast {
-      position: fixed;
-      right: 20px;
-      top: 20px;
-      z-index: 50;
-      min-width: 240px;
-      max-width: 360px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      display: none;
-      font-weight: 800;
-    }
+    .detail { background: linear-gradient(135deg, #f8fafc, #ffffff); border: 1px solid #edf2f7; border-radius: 18px; padding: 12px; color: #334155; white-space: pre-wrap; margin-bottom: 12px; font-size: 14px; max-height: 120px; overflow: hidden; position: relative; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .empty { text-align: center; background: rgba(255,255,255,.78); border-radius: 24px; padding: 60px 20px; color: var(--muted); box-shadow: 0 10px 34px rgba(30,64,175,.08); }
+    .toast { position: fixed; right: 20px; top: 20px; z-index: 50; min-width: 240px; max-width: 360px; padding: 14px 16px; border-radius: 18px; box-shadow: var(--shadow); display: none; font-weight: 800; }
     .toast.ok { display: block; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
     .toast.err { display: block; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-
-    .modal-mask {
-      position: fixed;
-      inset: 0;
-      background: rgba(15,23,42,.45);
-      backdrop-filter: blur(6px);
-      z-index: 40;
-      display: none;
-      place-items: center;
-      padding: 20px;
-    }
-
+    .modal-mask { position: fixed; inset: 0; background: rgba(15,23,42,.45); backdrop-filter: blur(6px); z-index: 40; display: none; place-items: center; padding: 20px; }
     .modal-mask.show { display: grid; }
-    .modal {
-      width: min(860px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      background: white;
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 30px 90px rgba(15,23,42,.28);
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }
-
+    .modal { width: min(860px, 100%); max-height: 90vh; overflow: auto; background: white; border-radius: 28px; padding: 24px; box-shadow: 0 30px 90px rgba(15,23,42,.28); }
+    .modal-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 18px; }
     .modal h2 { color: #1e3a8a; }
-    .close {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      border: none;
-      background: #f1f5f9;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .edit-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
+    .close { width: 40px; height: 40px; border-radius: 14px; border: none; background: #f1f5f9; cursor: pointer; font-size: 20px; }
+    .edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .edit-grid .full { grid-column: 1 / -1; }
-
-    .setting-card {
-      background: rgba(255,255,255,.78);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: 0 10px 34px rgba(30,64,175,.08);
-      max-width: 720px;
-    }
-
+    .setting-card { background: rgba(255,255,255,.78); border-radius: var(--radius); padding: 22px; box-shadow: 0 10px 34px rgba(30,64,175,.08); max-width: 720px; }
     .setting-card h2 { color: #1e3a8a; margin-bottom: 10px; }
     .setting-card p { color: var(--muted); margin-bottom: 16px; line-height: 1.8; }
-
-    .view { display: none; }
-    .view.active { display: block; }
-
+    .view { display: none; } .view.active { display: block; }
     @media (max-width: 1050px) {
       .app.show { grid-template-columns: 1fr; }
-      .sidebar {
-        position: static;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid rgba(226,232,240,.85);
-      }
+      .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid rgba(226,232,240,.85); }
       .side-bottom { position: static; margin-top: 18px; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .filter-grid { grid-template-columns: 1fr 1fr; }
       .order-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 640px) {
       .main { padding: 16px; }
       .topbar { display: block; }
@@ -450,56 +124,30 @@
     <div class="login-card">
       <div class="brand">
         <div class="logo">蔡</div>
-        <div>
-          <h1>订单管理后台</h1>
-          <p>小蔡同学文档工作室</p>
-        </div>
+        <div><h1>订单管理后台</h1><p>小蔡同学文档工作室</p></div>
       </div>
-
-      <div class="input-group">
-        <label for="password">后台密码</label>
-        <input id="password" type="password" placeholder="请输入后台密码" onkeydown="if(event.key==='Enter') login()">
-      </div>
-
+      <div class="input-group"><label for="password">后台密码</label><input id="password" type="password" placeholder="请输入后台密码" onkeydown="if(event.key==='Enter') login()"></div>
       <button class="primary-btn" onclick="login()">进入后台</button>
-
-      <div class="hint">
-        默认密码：123456。正式使用建议在 Render 的环境变量里设置 <b>ADMIN_PASSWORD</b>，这样只有你知道密码。
-      </div>
+      <div class="hint">默认密码：123456。正式使用建议在 Render 的环境变量里设置 <b>ADMIN_PASSWORD</b>。</div>
     </div>
   </section>
 
   <section id="app" class="app">
     <aside class="sidebar">
-      <div class="side-brand">
-        <div class="logo">蔡</div>
-        <div>
-          <h2>小蔡工作室</h2>
-          <span>订单管理系统</span>
-        </div>
-      </div>
-
+      <div class="side-brand"><div class="logo">蔡</div><div><h2>小蔡工作室</h2><span>订单管理系统</span></div></div>
       <div class="nav-item active" onclick="switchView('orders', this)">📋 订单管理</div>
       <div class="nav-item" onclick="switchView('stats', this)">📊 数据概览</div>
       <div class="nav-item" onclick="switchView('settings', this)">🔐 后台设置</div>
       <div class="nav-item" onclick="openSite()">🌐 打开前台网站</div>
-
-      <div class="side-bottom">
-        <button class="ghost-btn" style="width:100%;" onclick="logout()">退出登录</button>
-      </div>
+      <div class="nav-item" onclick="openTrack()">🔎 顾客查询页</div>
+      <div class="side-bottom"><button class="ghost-btn" style="width:100%;" onclick="logout()">退出登录</button></div>
     </aside>
 
     <main class="main">
       <div id="ordersView" class="view active">
         <div class="topbar">
-          <div class="title">
-            <h1>订单管理</h1>
-            <p id="todayText">管理客户需求、报价状态、交付进度和备注。</p>
-          </div>
-          <div class="top-actions">
-            <button class="ghost-btn" onclick="loadOrders()">刷新</button>
-            <button class="ghost-btn" onclick="exportCSV()">导出CSV</button>
-          </div>
+          <div class="title"><h1>订单管理</h1><p id="todayText">管理客户需求、报价状态、交付进度和备注。</p></div>
+          <div class="top-actions"><button class="ghost-btn" onclick="loadOrders()">刷新</button><button class="ghost-btn" onclick="exportCSV()">导出CSV</button></div>
         </div>
 
         <div class="stats">
@@ -512,45 +160,10 @@
 
         <div class="toolbar">
           <div class="filter-grid">
-            <div>
-              <label>搜索</label>
-              <input id="keyword" placeholder="姓名、联系方式、服务、需求、备注">
-            </div>
-            <div>
-              <label>服务类型</label>
-              <select id="serviceFilter">
-                <option value="">全部服务</option>
-                <option>PPT美化</option>
-                <option>Word排版</option>
-                <option>简历优化</option>
-                <option>学习计划网页</option>
-                <option>课程资料整理</option>
-                <option>网页二维码制作</option>
-                <option>其他需求</option>
-              </select>
-            </div>
-            <div>
-              <label>订单状态</label>
-              <select id="statusFilter">
-                <option value="">全部状态</option>
-                <option value="new">新订单</option>
-                <option value="contacted">已联系</option>
-                <option value="quoted">已报价</option>
-                <option value="paid">已收款</option>
-                <option value="doing">制作中</option>
-                <option value="done">已完成</option>
-                <option value="cancel">已取消</option>
-              </select>
-            </div>
-            <div>
-              <label>排序</label>
-              <select id="sortMode">
-                <option value="newest">最新优先</option>
-                <option value="oldest">最早优先</option>
-                <option value="priceHigh">金额高到低</option>
-                <option value="priceLow">金额低到高</option>
-              </select>
-            </div>
+            <div><label>搜索</label><input id="keyword" placeholder="姓名、联系方式、订单号、服务、需求、备注"></div>
+            <div><label>服务类型</label><select id="serviceFilter"><option value="">全部服务</option><option>PPT美化</option><option>Word排版</option><option>简历优化</option><option>学习计划网页</option><option>课程资料整理</option><option>网页二维码制作</option><option>其他需求</option></select></div>
+            <div><label>订单状态</label><select id="statusFilter"><option value="">全部状态</option><option value="new">新订单</option><option value="contacted">已联系</option><option value="quoted">已报价</option><option value="paid">已收款</option><option value="doing">制作中</option><option value="done">已完成</option><option value="cancel">已取消</option></select></div>
+            <div><label>排序</label><select id="sortMode"><option value="newest">最新优先</option><option value="oldest">最早优先</option><option value="priceHigh">金额高到低</option><option value="priceLow">金额低到高</option></select></div>
             <button class="small-btn" onclick="applyFilters()">筛选</button>
             <button class="ghost-btn" onclick="clearFilters()">清空</button>
           </div>
@@ -560,36 +173,23 @@
       </div>
 
       <div id="statsView" class="view">
-        <div class="topbar">
-          <div class="title">
-            <h1>数据概览</h1>
-            <p>快速查看你当前接单情况。</p>
-          </div>
-        </div>
+        <div class="topbar"><div class="title"><h1>数据概览</h1><p>快速查看你当前接单情况。</p></div></div>
         <div class="stats">
           <div class="stat blue"><span>全部订单</span><strong id="sTotal">0</strong></div>
           <div class="stat yellow"><span>待处理</span><strong id="sPending">0</strong></div>
           <div class="stat green"><span>完成订单</span><strong id="sDone">0</strong></div>
           <div class="stat purple"><span>预估收入</span><strong id="sIncome">¥0</strong></div>
         </div>
-        <div class="setting-card">
-          <h2>服务分布</h2>
-          <div id="serviceBreakdown" style="display:grid;gap:12px;margin-top:14px;"></div>
-        </div>
+        <div class="setting-card"><h2>服务分布</h2><div id="serviceBreakdown" style="display:grid;gap:12px;margin-top:14px;"></div></div>
       </div>
 
       <div id="settingsView" class="view">
-        <div class="topbar">
-          <div class="title">
-            <h1>后台设置</h1>
-            <p>这里显示后台使用说明和安全建议。</p>
-          </div>
-        </div>
+        <div class="topbar"><div class="title"><h1>后台设置</h1><p>后台使用说明和安全建议。</p></div></div>
         <div class="setting-card">
           <h2>后台密码说明</h2>
-          <p>当前后台通过密码登录。默认密码是 <b>123456</b>，正式使用时建议你到 Render 项目的 Environment 里新增环境变量：</p>
-          <p><b>ADMIN_PASSWORD = 你想设置的密码</b></p>
-          <p>设置后重新部署，后台登录密码就会变成你设置的新密码。</p>
+          <p>默认密码是 <b>123456</b>，正式使用时建议到 Render 项目的 Environment 里新增环境变量：<b>ADMIN_PASSWORD = 你想设置的密码</b></p>
+          <h2 style="margin-top:20px;">顾客查询说明</h2>
+          <p>顾客查询页是 <b>/track</b>。顾客需要输入订单号和提交时填写的联系方式，匹配后才能查看进度。后台的“内部备注”不会显示给顾客，“顾客可见进度说明”会显示给顾客。</p>
           <h2 style="margin-top:20px;">订单保存说明</h2>
           <p>当前订单保存在服务器文件 orders.json 中，适合前期测试和小规模接单。Render 免费服务重启后文件可能丢失，后期建议升级为数据库版本。</p>
         </div>
@@ -600,74 +200,25 @@
   <div id="modalMask" class="modal-mask">
     <div class="modal">
       <div class="modal-head">
-        <div>
-          <h2>订单详情与编辑</h2>
-          <p style="color:#64748b;margin-top:4px;">修改状态、金额、备注，方便你整理进度。</p>
-        </div>
+        <div><h2>订单详情与编辑</h2><p style="color:#64748b;margin-top:4px;">修改状态、金额、内部备注和顾客可见进度说明。</p></div>
         <button class="close" onclick="closeModal()">×</button>
       </div>
 
       <form id="editForm" class="edit-grid">
         <input type="hidden" id="editId">
-
-        <div>
-          <label>称呼</label>
-          <input id="editName">
-        </div>
-
-        <div>
-          <label>联系方式</label>
-          <input id="editContact">
-        </div>
-
-        <div>
-          <label>服务类型</label>
-          <select id="editService">
-            <option>PPT美化</option>
-            <option>Word排版</option>
-            <option>简历优化</option>
-            <option>学习计划网页</option>
-            <option>课程资料整理</option>
-            <option>网页二维码制作</option>
-            <option>其他需求</option>
-          </select>
-        </div>
-
-        <div>
-          <label>截止时间</label>
-          <input id="editDeadline">
-        </div>
-
-        <div>
-          <label>订单状态</label>
-          <select id="editStatus">
-            <option value="new">新订单</option>
-            <option value="contacted">已联系</option>
-            <option value="quoted">已报价</option>
-            <option value="paid">已收款</option>
-            <option value="doing">制作中</option>
-            <option value="done">已完成</option>
-            <option value="cancel">已取消</option>
-          </select>
-        </div>
-
-        <div>
-          <label>订单金额</label>
-          <input id="editPrice" type="number" min="0" step="0.1" placeholder="例如：29.9">
-        </div>
-
-        <div class="full">
-          <label>具体需求</label>
-          <textarea id="editDetails"></textarea>
-        </div>
-
-        <div class="full">
-          <label>我的备注</label>
-          <textarea id="editNote" placeholder="例如：已微信联系；报价29.9；等对方发文件。"></textarea>
-        </div>
-
+        <div><label>订单号</label><input id="editOrderNo" readonly></div>
+        <div><label>称呼</label><input id="editName"></div>
+        <div><label>联系方式</label><input id="editContact"></div>
+        <div><label>服务类型</label><select id="editService"><option>PPT美化</option><option>Word排版</option><option>简历优化</option><option>学习计划网页</option><option>课程资料整理</option><option>网页二维码制作</option><option>其他需求</option></select></div>
+        <div><label>截止时间</label><input id="editDeadline"></div>
+        <div><label>订单状态</label><select id="editStatus"><option value="new">新订单</option><option value="contacted">已联系</option><option value="quoted">已报价</option><option value="paid">已收款</option><option value="doing">制作中</option><option value="done">已完成</option><option value="cancel">已取消</option></select></div>
+        <div><label>订单金额</label><input id="editPrice" type="number" min="0" step="0.1" placeholder="例如：29.9"></div>
+        <div class="full"><label>具体需求</label><textarea id="editDetails"></textarea></div>
+        <div class="full"><label>顾客可见进度说明</label><textarea id="editPublicNote" placeholder="这段话顾客查询订单时可以看到。例如：已收到文件，预计今晚完成初稿。"></textarea></div>
+        <div class="full"><label>我的内部备注</label><textarea id="editNote" placeholder="这段话只有后台能看到。例如：已微信联系；报价29.9；等对方发文件。"></textarea></div>
         <div class="full" style="display:flex;gap:10px;flex-wrap:wrap;">
           <button type="button" class="small-btn" onclick="saveEdit()">保存修改</button>
+          <button type="button" class="ghost-btn" onclick="copyTrackInfo()">复制查询信息</button>
           <button type="button" class="danger-btn" onclick="deleteCurrentOrder()">删除订单</button>
           <button type="button" class="ghost-btn" onclick="closeModal()">取消</button>
         </div>
@@ -680,25 +231,8 @@
     let allOrders = [];
     let currentOrderId = null;
 
-    const statusText = {
-      new: "新订单",
-      contacted: "已联系",
-      quoted: "已报价",
-      paid: "已收款",
-      doing: "制作中",
-      done: "已完成",
-      cancel: "已取消"
-    };
-
-    const statusClass = {
-      new: "new",
-      contacted: "new",
-      quoted: "doing",
-      paid: "doing",
-      doing: "doing",
-      done: "done",
-      cancel: "cancel"
-    };
+    const statusText = { new:"新订单", contacted:"已联系", quoted:"已报价", paid:"已收款", doing:"制作中", done:"已完成", cancel:"已取消" };
+    const statusClass = { new:"new", contacted:"contacted", quoted:"quoted", paid:"paid", doing:"doing", done:"done", cancel:"cancel" };
 
     document.getElementById("todayText").textContent = "今天是 " + new Date().toLocaleDateString("zh-CN") + "，管理客户需求、报价状态、交付进度和备注。";
 
@@ -712,15 +246,9 @@
     async function login() {
       const password = document.getElementById("password").value.trim();
       if (!password) return showToast("err", "请输入后台密码。");
-
       try {
-        const res = await fetch("/api/admin/login", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({ password })
-        });
+        const res = await fetch("/api/admin/login", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ password }) });
         const data = await res.json();
-
         if (data.success) {
           token = data.token;
           localStorage.setItem("adminToken", token);
@@ -728,12 +256,8 @@
           document.getElementById("app").classList.add("show");
           await loadOrders();
           showToast("ok", "登录成功。");
-        } else {
-          showToast("err", data.message || "密码错误。");
-        }
-      } catch (e) {
-        showToast("err", "登录失败，请检查后端是否正常运行。");
-      }
+        } else showToast("err", data.message || "密码错误。");
+      } catch (e) { showToast("err", "登录失败，请检查后端是否正常运行。"); }
     }
 
     function logout() {
@@ -746,45 +270,27 @@
     function switchView(name, el) {
       document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
       if (el) el.classList.add("active");
-
       document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
       document.getElementById(name + "View").classList.add("active");
-
       if (name === "stats") renderStatsPage();
     }
 
-    function openSite() {
-      window.open("/", "_blank");
-    }
+    function openSite() { window.open("/", "_blank"); }
+    function openTrack() { window.open("/track", "_blank"); }
 
     async function loadOrders() {
       try {
-        const res = await fetch("/api/admin/orders", {
-          headers: {"Authorization": "Bearer " + token}
-        });
-
-        if (res.status === 401) {
-          logout();
-          showToast("err", "登录已失效，请重新输入密码。");
-          return;
-        }
-
+        const res = await fetch("/api/admin/orders", { headers: {"Authorization": "Bearer " + token} });
+        if (res.status === 401) { logout(); showToast("err", "登录已失效，请重新输入密码。"); return; }
         allOrders = await res.json();
         normalizeOrders();
         updateStats();
         applyFilters();
-      } catch (e) {
-        showToast("err", "加载订单失败。");
-      }
+      } catch (e) { showToast("err", "加载订单失败。"); }
     }
 
     function normalizeOrders() {
-      allOrders = allOrders.map(o => ({
-        status: "new",
-        price: "",
-        note: "",
-        ...o
-      }));
+      allOrders = allOrders.map(o => ({ status:"new", price:"", note:"", publicNote:"", orderNo:String(o.id), ...o }));
     }
 
     function updateStats() {
@@ -792,13 +298,11 @@
       const newNum = allOrders.filter(o => (o.status || "new") === "new").length;
       const doingNum = allOrders.filter(o => ["contacted","quoted","paid","doing"].includes(o.status)).length;
       const doneNum = allOrders.filter(o => o.status === "done").length;
-
       document.getElementById("totalCount").textContent = allOrders.length;
       document.getElementById("newCount").textContent = newNum;
       document.getElementById("doingCount").textContent = doingNum;
       document.getElementById("doneCount").textContent = doneNum;
       document.getElementById("incomeCount").textContent = "¥" + income.toFixed(1);
-
       document.getElementById("sTotal").textContent = allOrders.length;
       document.getElementById("sPending").textContent = newNum + doingNum;
       document.getElementById("sDone").textContent = doneNum;
@@ -810,22 +314,16 @@
       const service = document.getElementById("serviceFilter").value;
       const status = document.getElementById("statusFilter").value;
       const sort = document.getElementById("sortMode").value;
-
       let list = [...allOrders];
-
-      if (keyword) {
-        list = list.filter(o => JSON.stringify(o).toLowerCase().includes(keyword));
-      }
+      if (keyword) list = list.filter(o => JSON.stringify(o).toLowerCase().includes(keyword));
       if (service) list = list.filter(o => o.service === service);
       if (status) list = list.filter(o => (o.status || "new") === status);
-
-      list.sort((a, b) => {
+      list.sort((a,b) => {
         if (sort === "oldest") return a.id - b.id;
         if (sort === "priceHigh") return (parseFloat(b.price)||0) - (parseFloat(a.price)||0);
         if (sort === "priceLow") return (parseFloat(a.price)||0) - (parseFloat(b.price)||0);
         return b.id - a.id;
       });
-
       renderOrders(list);
     }
 
@@ -838,13 +336,7 @@
     }
 
     function escapeHtml(str) {
-      return String(str || "").replace(/[&<>"']/g, s => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        "\"": "&quot;",
-        "'": "&#039;"
-      }[s]));
+      return String(str || "").replace(/[&<>"']/g, s => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#039;" }[s]));
     }
 
     function renderOrders(list) {
@@ -853,7 +345,6 @@
         box.innerHTML = '<div class="empty"><h2>暂无订单</h2><p>没有符合条件的订单，或者还没有人提交需求。</p></div>';
         return;
       }
-
       box.innerHTML = list.map(o => {
         const st = o.status || "new";
         const cls = statusClass[st] || "new";
@@ -862,37 +353,33 @@
             <div class="order-head">
               <div>
                 <div class="order-title">${escapeHtml(o.service)}｜${escapeHtml(o.name)}</div>
-                <div class="order-meta">订单ID：${o.id}｜提交：${escapeHtml(o.createdAt || "")}${o.updatedAt ? "｜更新：" + escapeHtml(o.updatedAt) : ""}</div>
+                <div class="order-meta">订单号：${escapeHtml(o.orderNo)}｜提交：${escapeHtml(o.createdAt || "")}${o.updatedAt ? "｜更新：" + escapeHtml(o.updatedAt) : ""}</div>
               </div>
               <span class="badge ${cls}">${statusText[st] || "新订单"}</span>
             </div>
-
             <div class="order-grid">
               <div class="info"><span>联系方式</span><b>${escapeHtml(o.contact)}</b></div>
               <div class="info"><span>截止时间</span><b>${escapeHtml(o.deadline || "未填写")}</b></div>
               <div class="info"><span>订单金额</span><b>${o.price ? "¥" + escapeHtml(o.price) : "未填写"}</b></div>
-              <div class="info"><span>备注</span><b>${o.note ? "有备注" : "暂无"}</b></div>
+              <div class="info"><span>顾客说明</span><b>${o.publicNote ? "已填写" : "暂无"}</b></div>
             </div>
-
             <div class="detail">${escapeHtml(o.details)}</div>
-
             <div class="actions">
               <button class="small-btn" onclick="openDetail(${o.id})">查看 / 编辑</button>
               <button class="ghost-btn" onclick="quickStatus(${o.id}, 'contacted')">标记已联系</button>
               <button class="ghost-btn" onclick="quickStatus(${o.id}, 'doing')">制作中</button>
               <button class="ghost-btn" onclick="quickStatus(${o.id}, 'done')">已完成</button>
             </div>
-          </article>
-        `;
+          </article>`;
       }).join("");
     }
 
     function openDetail(id) {
       const o = allOrders.find(item => item.id === id);
       if (!o) return;
-
       currentOrderId = id;
       document.getElementById("editId").value = o.id;
+      document.getElementById("editOrderNo").value = o.orderNo || o.id;
       document.getElementById("editName").value = o.name || "";
       document.getElementById("editContact").value = o.contact || "";
       document.getElementById("editService").value = o.service || "其他需求";
@@ -900,8 +387,8 @@
       document.getElementById("editStatus").value = o.status || "new";
       document.getElementById("editPrice").value = o.price || "";
       document.getElementById("editDetails").value = o.details || "";
+      document.getElementById("editPublicNote").value = o.publicNote || "";
       document.getElementById("editNote").value = o.note || "";
-
       document.getElementById("modalMask").classList.add("show");
     }
 
@@ -920,72 +407,43 @@
         status: document.getElementById("editStatus").value,
         price: document.getElementById("editPrice").value.trim(),
         details: document.getElementById("editDetails").value.trim(),
+        publicNote: document.getElementById("editPublicNote").value.trim(),
         note: document.getElementById("editNote").value.trim()
       };
-
-      const res = await fetch("/api/admin/orders/" + id, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + token
-        },
-        body: JSON.stringify(payload)
-      });
-
+      const res = await fetch("/api/admin/orders/" + id, { method:"PATCH", headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + token }, body:JSON.stringify(payload) });
       const data = await res.json();
-      if (data.success) {
-        showToast("ok", "订单已保存。");
-        closeModal();
-        await loadOrders();
-      } else {
-        showToast("err", data.message || "保存失败。");
-      }
+      if (data.success) { showToast("ok", "订单已保存，顾客查询页会同步更新。"); closeModal(); await loadOrders(); }
+      else showToast("err", data.message || "保存失败。");
     }
 
     async function quickStatus(id, status) {
-      const res = await fetch("/api/admin/orders/" + id, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + token
-        },
-        body: JSON.stringify({ status })
-      });
+      const res = await fetch("/api/admin/orders/" + id, { method:"PATCH", headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + token }, body:JSON.stringify({ status }) });
       const data = await res.json();
-      if (data.success) {
-        showToast("ok", "状态已更新。");
-        await loadOrders();
-      } else {
-        showToast("err", data.message || "更新失败。");
-      }
+      if (data.success) { showToast("ok", "状态已更新，顾客查询页会同步更新。"); await loadOrders(); }
+      else showToast("err", data.message || "更新失败。");
     }
 
     async function deleteCurrentOrder() {
       if (!currentOrderId) return;
       if (!confirm("确定删除这个订单吗？删除后不可恢复。")) return;
-      const res = await fetch("/api/admin/orders/" + currentOrderId, {
-        method: "DELETE",
-        headers: {"Authorization": "Bearer " + token}
-      });
+      const res = await fetch("/api/admin/orders/" + currentOrderId, { method:"DELETE", headers:{"Authorization":"Bearer " + token} });
       const data = await res.json();
-      if (data.success) {
-        showToast("ok", "订单已删除。");
-        closeModal();
-        await loadOrders();
-      } else {
-        showToast("err", data.message || "删除失败。");
-      }
+      if (data.success) { showToast("ok", "订单已删除。"); closeModal(); await loadOrders(); }
+      else showToast("err", data.message || "删除失败。");
+    }
+
+    function copyTrackInfo() {
+      const orderNo = document.getElementById("editOrderNo").value;
+      const text = `你的订单号：${orderNo}\n查询进度：${location.origin}/track\n查询时请输入订单号和你提交时填写的联系方式。`;
+      navigator.clipboard.writeText(text).then(() => showToast("ok", "已复制顾客查询信息。"));
     }
 
     function exportCSV() {
       if (!allOrders.length) return showToast("err", "暂无订单可导出。");
-      const headers = ["订单ID","称呼","联系方式","服务类型","截止时间","状态","金额","需求","备注","提交时间","更新时间"];
-      const rows = allOrders.map(o => [
-        o.id, o.name, o.contact, o.service, o.deadline, statusText[o.status || "new"],
-        o.price || "", o.details || "", o.note || "", o.createdAt || "", o.updatedAt || ""
-      ]);
+      const headers = ["订单号","称呼","联系方式","服务类型","截止时间","状态","金额","需求","顾客可见说明","内部备注","提交时间","更新时间"];
+      const rows = allOrders.map(o => [o.orderNo || o.id, o.name, o.contact, o.service, o.deadline, statusText[o.status || "new"], o.price || "", o.details || "", o.publicNote || "", o.note || "", o.createdAt || "", o.updatedAt || ""]);
       const csv = [headers, ...rows].map(row => row.map(cell => `"${String(cell ?? "").replace(/"/g, '""')}"`).join(",")).join("\n");
-      const blob = new Blob(["\ufeff" + csv], {type: "text/csv;charset=utf-8;"});
+      const blob = new Blob(["\ufeff" + csv], {type:"text/csv;charset=utf-8;"});
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = "小蔡工作室订单_" + new Date().toLocaleDateString("zh-CN").replaceAll("/", "-") + ".csv";
@@ -998,22 +456,10 @@
       const counts = {};
       allOrders.forEach(o => counts[o.service || "其他需求"] = (counts[o.service || "其他需求"] || 0) + 1);
       const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
-      if (!entries.length) {
-        box.innerHTML = "<p style='color:#64748b;'>暂无数据。</p>";
-        return;
-      }
+      if (!entries.length) { box.innerHTML = "<p style='color:#64748b;'>暂无数据。</p>"; return; }
       box.innerHTML = entries.map(([service, count]) => {
         const percent = Math.round(count / allOrders.length * 100);
-        return `
-          <div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#334155;font-weight:800;">
-              <span>${escapeHtml(service)}</span><span>${count} 单｜${percent}%</span>
-            </div>
-            <div style="height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;">
-              <div style="height:100%;width:${percent}%;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:99px;"></div>
-            </div>
-          </div>
-        `;
+        return `<div><div style="display:flex;justify-content:space-between;margin-bottom:8px;color:#334155;font-weight:800;"><span>${escapeHtml(service)}</span><span>${count} 单｜${percent}%</span></div><div style="height:12px;background:#e2e8f0;border-radius:99px;overflow:hidden;"><div style="height:100%;width:${percent}%;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:99px;"></div></div></div>`;
       }).join("");
     }
 

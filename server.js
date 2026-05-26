@@ -29,6 +29,14 @@ function nowCN() {
   return new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" });
 }
 
+function makeOrderNo() {
+  const d = new Date();
+  const pad = n => String(n).padStart(2, "0");
+  const time = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const rand = Math.floor(Math.random() * 900 + 100);
+  return `XC${time}${rand}`;
+}
+
 function requireAdmin(req, res, next) {
   const auth = req.headers.authorization || "";
   const token = auth.replace("Bearer ", "");
@@ -38,8 +46,27 @@ function requireAdmin(req, res, next) {
   next();
 }
 
+function publicOrder(order) {
+  return {
+    orderNo: order.orderNo || String(order.id),
+    name: order.name,
+    service: order.service,
+    deadline: order.deadline,
+    details: order.details,
+    status: order.status || "new",
+    price: order.price || "",
+    publicNote: order.publicNote || "",
+    createdAt: order.createdAt || "",
+    updatedAt: order.updatedAt || ""
+  };
+}
+
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin.html"));
+});
+
+app.get("/track", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "track.html"));
 });
 
 app.post("/api/orders", (req, res) => {
@@ -56,6 +83,7 @@ app.post("/api/orders", (req, res) => {
 
   const newOrder = {
     id: Date.now(),
+    orderNo: makeOrderNo(),
     name: String(name).trim(),
     contact: String(contact).trim(),
     service: String(service).trim(),
@@ -64,6 +92,7 @@ app.post("/api/orders", (req, res) => {
     status: "new",
     price: "",
     note: "",
+    publicNote: "已收到你的需求，我会尽快查看并联系你确认具体要求。",
     createdAt: nowCN(),
     updatedAt: ""
   };
@@ -74,12 +103,43 @@ app.post("/api/orders", (req, res) => {
   res.json({
     success: true,
     message: "提交成功",
-    order: newOrder
+    order: publicOrder(newOrder)
+  });
+});
+
+app.post("/api/track", (req, res) => {
+  const { orderNo, contact } = req.body;
+
+  if (!orderNo || !contact) {
+    return res.status(400).json({ success: false, message: "请填写订单号和联系方式" });
+  }
+
+  const inputOrderNo = String(orderNo).trim().toLowerCase();
+  const inputContact = String(contact).trim().toLowerCase();
+
+  const orders = readOrders();
+
+  const order = orders.find(item => {
+    const itemOrderNo = String(item.orderNo || item.id).trim().toLowerCase();
+    const itemContact = String(item.contact || "").trim().toLowerCase();
+    return itemOrderNo === inputOrderNo && itemContact === inputContact;
+  });
+
+  if (!order) {
+    return res.status(404).json({
+      success: false,
+      message: "未查询到订单，请检查订单号和联系方式是否与提交时一致。"
+    });
+  }
+
+  res.json({
+    success: true,
+    order: publicOrder(order)
   });
 });
 
 app.get("/api/orders", (req, res) => {
-  const orders = readOrders();
+  const orders = readOrders().map(publicOrder);
   res.json(orders);
 });
 
@@ -106,7 +166,7 @@ app.patch("/api/admin/orders/:id", requireAdmin, (req, res) => {
     return res.status(404).json({ success: false, message: "未找到订单" });
   }
 
-  const editableFields = ["name", "contact", "service", "deadline", "details", "status", "price", "note"];
+  const editableFields = ["name", "contact", "service", "deadline", "details", "status", "price", "note", "publicNote"];
   for (const field of editableFields) {
     if (req.body[field] !== undefined) {
       if (field === "status" && !allowedStatuses.includes(req.body[field])) {
@@ -138,4 +198,5 @@ app.delete("/api/admin/orders/:id", requireAdmin, (req, res) => {
 app.listen(PORT, () => {
   console.log(`小蔡同学文档工作室已启动：http://localhost:${PORT}`);
   console.log(`后台地址：http://localhost:${PORT}/admin`);
+  console.log(`顾客查询页：http://localhost:${PORT}/track`);
 });
