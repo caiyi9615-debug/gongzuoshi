@@ -21,9 +21,9 @@
 <section class="container fade"><h2 class="title">价格与定金</h2><p class="sub">定金可抵扣尾款。若因我无法完成订单，定金可退还。</p><table class="table"><tr><th>服务类别</th><th>起步价格</th><th>定金</th></tr><tr><td>PPT美化</td><td>9.9元起</td><td>5元</td></tr><tr><td>Word排版</td><td>6.9元起</td><td>3元</td></tr><tr><td>简历优化</td><td>9.9元起</td><td>5元</td></tr><tr><td>学习计划网页</td><td>19.9元起</td><td>9.9元</td></tr><tr><td>资料整理</td><td>9.9元起</td><td>5元</td></tr></table><div class="notice">提交需求后会生成专属订单链接，客户打开链接即可查看进度和支付定金，不需要手动复制订单号。</div></section>
 
 <section class="container fade" id="order"><h2 class="title">填写需求</h2><p class="sub">提交后会自动生成专属订单进度链接，并展示微信/支付宝收款码。</p><div class="box"><form id="orderForm" onsubmit="return false;"><div class="grid">
-<div><label>称呼</label><input id="name" placeholder="例如：张同学" required></div><div><label>联系方式</label><input id="contact" placeholder="微信 / QQ / 手机号" required></div>
-<div><label>服务类型</label><select id="service" required><option value="">请选择</option><option>PPT美化</option><option>Word排版</option><option>简历优化</option><option>学习计划网页</option><option>课程资料整理</option><option>网页二维码制作</option><option>其他需求</option></select></div><div><label>截止时间</label><input id="deadline" placeholder="例如：今晚 / 明天下午 / 周五前"></div>
-<div class="full"><label>具体需求</label><textarea id="details" placeholder="请写清页数、课程、要求、风格、是否加急等。" required></textarea></div><div class="full"><button type="button" id="submitOrderBtn" onclick="submitOrder()">提交需求并生成进度链接</button></div>
+<div><label>称呼</label><input id="name" name="name" placeholder="例如：张同学" required></div><div><label>联系方式</label><input id="contact" name="contact" placeholder="微信 / QQ / 手机号" required></div>
+<div><label>服务类型</label><select id="service" name="service" required><option value="">请选择</option><option>PPT美化</option><option>Word排版</option><option>简历优化</option><option>学习计划网页</option><option>课程资料整理</option><option>网页二维码制作</option><option>其他需求</option></select></div><div><label>截止时间</label><input id="deadline" name="deadline" placeholder="例如：今晚 / 明天下午 / 周五前"></div>
+<div class="full"><label>具体需求</label><textarea id="details" name="details" placeholder="请写清页数、课程、要求、风格、是否加急等。" required></textarea></div><div class="full"><button type="button" id="submitOrderBtn" onclick="submitOrder()">提交需求并生成进度链接</button></div>
 </div></form><div id="result" class="result"></div></div></section>
 
 <section class="container fade"><h2 class="title">联系方式</h2><div class="box" style="text-align:center"><p>微信：17781762502</p><p>QQ：2241037918</p><p>邮箱：2241037918@qq.com</p><p><a href="/track">查询订单进度</a></p></div></section><div class="footer">© 2026 小蔡同学文档工作室</div>
@@ -65,17 +65,29 @@ function getValue(id){
 async function submitOrder(){
   setButtonLoading(true);
 
+  const formEl = document.getElementById("orderForm");
+
+  function readField(fieldName){
+    const byName = formEl ? formEl.querySelector(`[name="${fieldName}"]`) : null;
+    const byId = document.getElementById(fieldName);
+    const el = byName || byId;
+    return String((el && el.value) || "").trim();
+  }
+
   const data = {
-    name: getValue("name"),
-    contact: getValue("contact"),
-    service: getValue("service"),
-    deadline: getValue("deadline"),
-    details: getValue("details")
+    name: readField("name"),
+    contact: readField("contact"),
+    service: readField("service"),
+    deadline: readField("deadline"),
+    details: readField("details")
   };
+
+  console.log("即将提交的数据：", data);
 
   if(!data.name || !data.contact || !data.service || !data.details){
     result.className = "result error";
-    result.textContent = "请把称呼、联系方式、服务类型和具体需求填写完整。";
+    result.innerHTML = `请把称呼、联系方式、服务类型和具体需求填写完整。<br>
+      当前读取到：称呼【${data.name || "空"}】、联系方式【${data.contact || "空"}】、服务类型【${data.service || "空"}】、具体需求【${data.details || "空"}】`;
     setButtonLoading(false);
     return;
   }
