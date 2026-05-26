@@ -1,11 +1,9 @@
 {
-  "name": "caistudio-customer-track",
-  "version": "3.0.0",
-  "description": "小蔡同学文档工作室：前台下单 + 后台管理 + 顾客订单进度查询",
+  "name": "caistudio-deposit-animated",
+  "version": "4.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2"
