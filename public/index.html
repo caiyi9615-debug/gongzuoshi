@@ -52,13 +52,14 @@ async function copyText(text){
 function setButtonLoading(isLoading){
   const btn = document.getElementById("submitOrderBtn");
   if(!btn) return;
-  btn.disabled = isLoading;
+  btn.disabled = Boolean(isLoading);
   btn.textContent = isLoading ? "正在提交，请稍等..." : "提交需求并生成进度链接";
 }
 
 function getValue(id){
   const el = document.getElementById(id);
-  return el ? el.value.trim() : "";
+  if(!el) return "";
+  return String(el.value || "").trim();
 }
 
 async function submitOrder(){
