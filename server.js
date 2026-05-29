@@ -32,4 +32,14 @@ app.get("/api/site-content",(req,res)=>res.json(readContent()));
 app.get("/api/admin/site-content",admin,(req,res)=>res.json(readContent()));
 app.patch("/api/admin/site-content",admin,(req,res)=>{saveContent(req.body);res.json({success:true})});
 
+
+const contentPath=path.join(__dirname,"siteContent.json");
+function readContent(){if(!fs.existsSync(contentPath))return {services:[],pricingNote:""};try{return JSON.parse(fs.readFileSync(contentPath,"utf-8"))}catch{return {services:[],pricingNote:""}}}
+function saveContent(d){fs.writeFileSync(contentPath,JSON.stringify(d,null,2),"utf-8")}
+app.get("/admin-content",(req,res)=>res.sendFile(path.join(__dirname,"public","admin-content.html")));
+app.get("/service/:slug",(req,res)=>res.sendFile(path.join(__dirname,"public","service-detail.html")));
+app.get("/api/site-content",(req,res)=>res.json(readContent()));
+app.get("/api/admin/site-content",admin,(req,res)=>res.json(readContent()));
+app.patch("/api/admin/site-content",admin,(req,res)=>{saveContent(req.body);res.json({success:true})});
+
 app.listen(PORT,"0.0.0.0",()=>console.log("caistudio running on "+PORT));

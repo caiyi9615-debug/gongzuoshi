@@ -33,3 +33,30 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
    /admin 订单后台
    /admin-content 内容管理后台
    /track 顾客查询页
+
+
+稳定修正版说明：
+1. 已检查 server.js 语法。
+2. 已确认 /api/orders 能返回 []。
+3. 已确认 /api/site-content 能读取示例和收费标准数据。
+4. 已确认 Render 监听端口使用 0.0.0.0。
+5. 订单后台右下角新增“内容管理”入口，也可直接访问 /admin-content。
+
+新增：项目详情页 + 图片链接案例版
+1. 首页服务卡片新增“查看详情与价目表”。
+2. 新增 /service/:slug 项目详情页。
+3. 每个项目详情页包含：
+   - 服务介绍
+   - 常见流程
+   - 案例展示
+   - 案例图片链接
+   - 详细价目表
+   - 注意事项
+4. 新增 /admin-content 内容管理后台。
+5. 后台可以通过修改 siteContent.json 的 image 字段自由添加案例图片链接。
+6. 上传时需要包含：
+   public/
+   server.js
+   package.json
+   README.txt
+   siteContent.json

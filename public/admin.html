@@ -23,4 +23,9 @@ async function delOrder(){if(!confirm("确定删除？"))return;let r=await fetc
 function copyLink(){let link=location.origin+`/track/${encodeURIComponent(cur.orderNo)}?key=${encodeURIComponent(cur.trackKey)}`;navigator.clipboard.writeText(`你的订单进度链接：${link}\n定金：${cur.deposit}元，尾款将在作品完成后显示，补尾款后移交文件。`).then(()=>toastMsg("ok","已复制"))}
 function exportCSV(){let csv=["订单号,称呼,联系方式,邮箱,服务,状态,定金,总金额,尾款,定金备注,尾款备注,交付链接"].concat(data.map(o=>[o.orderNo,o.name,o.contact,o.email,o.service,st[o.status],o.deposit,o.price,bal(o),o.paymentNote,o.balancePaymentNote,o.deliveryLink].map(x=>`"${String(x||"").replace(/"/g,'""')}"`).join(","))).join("\\n");let blob=new Blob(["\\ufeff"+csv],{type:"text/csv"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="订单.csv";a.click()}
 [kw,sv,sf,sort].forEach(x=>x.addEventListener("input",filter));if(token){document.getElementById("login").style.display="none";app.classList.add("show");loadOrders()}
-</script></body></html>
+</script>
+<div style="position:fixed;right:18px;bottom:18px;z-index:20">
+  <button class="g" onclick="window.open('/admin-content')" title="管理服务示例和收费标准">🧩 内容管理</button>
+</div>
+
+</body></html>
