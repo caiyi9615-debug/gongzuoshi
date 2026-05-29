@@ -28,6 +28,55 @@
   font-weight:900;
 }
 
+
+.example-file{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:14px 0;
+  padding:15px 16px;
+  border-radius:16px;
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+}
+.example-file span{
+  color:#1e3a8a;
+  font-weight:900;
+}
+.example-file a{
+  background:#2563eb;
+  color:#fff;
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.example-img{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
+  border-radius:18px;
+  border:1px solid #dbeafe;
+  background:#f8fafc;
+  margin:14px 0;
+  box-shadow:0 10px 28px rgba(30,64,175,.10);
+}
+.open-original{
+  display:inline-block;
+  margin:8px 0 10px;
+  background:#2563eb;
+  color:#fff;
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:900;
+}
+.card{display:flex;flex-direction:column}
+.card ul{margin-top:auto}
+
 </style></head><body>
 <header class="top"><div class="wrap"><p><a href="/" style="color:white">← 返回首页</a></p><h1 id="name">服务详情</h1><p id="desc"></p><div class="tags" id="tags"></div><a href="/#order" class="btn">立即下单</a><a href="#pricing" class="btn">查看价目表</a></div></header>
 <main class="container">
@@ -40,6 +89,6 @@
 <script>
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
 function slug(){let p=location.pathname.split("/").filter(Boolean);return p[1]||""}
-async function load(){let r=await fetch("/api/site-content"),d=await r.json();let s=(d.services||[]).find(x=>x.slug===slug())||(d.services||[])[0];if(!s){document.body.innerHTML="未找到服务";return}document.title=s.name+" - 小蔡同学文档工作室";document.getElementById("examples").classList.toggle("study-direct-mode", s.slug==="study-web");name.textContent=s.name;desc.textContent=s.desc||"";intro.textContent=s.intro||s.desc||"";tags.innerHTML=(s.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");process.innerHTML=(s.process||[]).map(i=>`<li>${esc(i)}</li>`).join("");examples.innerHTML=(s.examples||[]).map(e=>`<div class="card example"><h3>${esc(e.title)}</h3><p>${esc(e.desc)}</p>${e.image?`<a class="open-original" href="${esc(e.image)}" target="_blank">打开原图查看</a><img class="example-img" src="${esc(e.image)}" alt="${esc(e.title)}">`:`<div class="placeholder">暂无图片，可在后台填写图片链接</div>`}<ul>${(e.items||[]).map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");prices.innerHTML=(s.pricing||[]).map(p=>`<div class="price-card"><h3>${esc(p.name)}</h3><div class="price-main">${esc(p.price)}</div><p>定金：<b>${esc(p.deposit)}</b></p><p>${esc(p.desc)}</p></div>`).join("");notices.innerHTML=(s.notices||[]).map(i=>`<li>${esc(i)}</li>`).join("");globalNote.textContent=d.pricingNote||""}
+async function load(){let r=await fetch("/api/site-content"),d=await r.json();let s=(d.services||[]).find(x=>x.slug===slug())||(d.services||[])[0];if(!s){document.body.innerHTML="未找到服务";return}document.title=s.name+" - 小蔡同学文档工作室";document.getElementById("examples").classList.toggle("study-direct-mode", s.slug==="study-web");name.textContent=s.name;desc.textContent=s.desc||"";intro.textContent=s.intro||s.desc||"";tags.innerHTML=(s.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");process.innerHTML=(s.process||[]).map(i=>`<li>${esc(i)}</li>`).join("");examples.innerHTML=(s.examples||[]).map(e=>`<div class="card example"><h3>${esc(e.title)}</h3><p>${esc(e.desc)}</p>${e.image?`<a class="open-original" href="${esc(e.image)}" target="_blank">打开原图查看</a><img class="example-img" src="${esc(e.image)}" alt="${esc(e.title)}">`:``}${e.file?`<div class="example-file"><span>📎 ${esc(e.fileName||"示例文件")}</span><a href="${esc(e.file)}" target="_blank">点击查看示例</a></div>`:(!e.image?`<div class="placeholder">暂无图片或文件，可在后台填写链接</div>`:``)}<ul>${(e.items||[]).map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");prices.innerHTML=(s.pricing||[]).map(p=>`<div class="price-card"><h3>${esc(p.name)}</h3><div class="price-main">${esc(p.price)}</div><p>定金：<b>${esc(p.deposit)}</b></p><p>${esc(p.desc)}</p></div>`).join("");notices.innerHTML=(s.notices||[]).map(i=>`<li>${esc(i)}</li>`).join("");globalNote.textContent=d.pricingNote||""}
 load();
 </script></body></html>
