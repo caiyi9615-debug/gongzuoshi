@@ -71,3 +71,12 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
 本次修改：新增“网站制作”服务分类（/service/web-service），按给别人做网站的标准说明静态展示页、带后台网站、完整接单系统，并明确服务器/域名/数据库等第三方费用由客户承担。
 
 本次新增：每个项目详情页均已加入内置示例图，示例图位于 public/assets/examples/，后续可在 /admin-content 中替换为真实案例图片链接。
+
+
+本次新增：学习计划长图滚动案例
+1. 已把两张长图加入 public/assets/examples/：
+   - danzi-study-long.jpeg
+   - mimi-checkin-long.jpeg
+2. 已加入“学习计划网页”详情页 /service/study-web。
+3. 案例图片采用固定高度滚动预览框：页面不动，图片在框内上下滑动。
+4. 后续仍可在 /admin-content 中替换 image 路径。
