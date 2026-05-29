@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="1200" height="760" rx="40" fill="#eff6ff"/>
+<rect x="80" y="80" width="1040" height="600" rx="32" fill="#fff"/>
+<text x="140" y="180" font-size="56" font-weight="900" fill="#1e3a8a">学习计划网页示例</text>
+<text x="140" y="245" font-size="30" fill="#475569">每日任务 · 进度统计 · 打卡记录 · 云同步</text>
+<rect x="140" y="320" width="260" height="120" rx="24" fill="#dbeafe"/>
+<rect x="440" y="320" width="260" height="120" rx="24" fill="#dbeafe"/>
+<rect x="740" y="320" width="260" height="120" rx="24" fill="#dbeafe"/>
+<text x="185" y="390" font-size="30" font-weight="800" fill="#2563eb">复习计划</text>
+<text x="485" y="390" font-size="30" font-weight="800" fill="#2563eb">每日打卡</text>
+<text x="785" y="390" font-size="30" font-weight="800" fill="#2563eb">进度展示</text>
+</svg>

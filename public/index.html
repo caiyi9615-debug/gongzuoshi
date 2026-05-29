@@ -42,6 +42,71 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
   margin-top:0 !important;
 }
 
+
+.select-wrap{position:relative}
+select#service{
+  position:absolute !important;
+  left:-9999px !important;
+  width:1px !important;
+  height:1px !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+.pretty-select{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  background:#fff;
+  min-height:50px;
+  position:relative;
+  cursor:pointer;
+  transition:.2s;
+}
+.pretty-select:hover,.pretty-select.open{
+  border-color:#2563eb;
+  box-shadow:0 0 0 4px rgba(37,99,235,.10);
+}
+.pretty-select-current{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  color:#172033;
+  font-size:15px;
+}
+.pretty-select-current::after{
+  content:"⌄";
+  color:#2563eb;
+  font-weight:900;
+  font-size:18px;
+}
+.pretty-options{
+  display:none;
+  position:absolute;
+  left:0;
+  right:0;
+  top:58px;
+  background:#fff;
+  border:1px solid #bfdbfe;
+  border-radius:16px;
+  box-shadow:0 18px 42px rgba(30,64,175,.18);
+  overflow:hidden;
+  z-index:100;
+  padding:8px;
+}
+.pretty-select.open .pretty-options{display:block}
+.pretty-option{
+  padding:11px 13px;
+  border-radius:12px;
+  color:#1e3a8a;
+  font-weight:800;
+}
+.pretty-option:hover,.pretty-option.active{
+  background:#eff6ff;
+  color:#2563eb;
+}
+
 </style>
 </head>
 <body>
@@ -70,7 +135,7 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 <h2 class="title">填写需求</h2><p class="sub">邮箱为选填。提交后会自动生成专属进度链接，并展示收款码。</p><div class="box"><form id="orderForm" onsubmit="return false;"><div class="grid">
 <div><label>称呼</label><input id="name" name="name" placeholder="例如：张同学"></div><div><label>联系方式</label><input id="contact" name="contact" placeholder="微信 / QQ / 手机号"></div>
 <div><label>邮箱（选填）</label><input id="email" name="email" placeholder="用于接收文件，可不填"></div><div><label>截止时间</label><input id="deadline" name="deadline" placeholder="例如：明天晚上"></div>
-<div><label>服务类型</label><select id="service" name="service"><option value="">请选择</option></select></div><div><label>期望风格（选填）</label><input id="style" name="style" placeholder="例如：简洁、正式、科技风"></div>
+<div class="select-wrap"><label>服务类型</label><select id="service" name="service"><option value="">请选择</option></select><div id="prettyService" class="pretty-select"><div class="pretty-select-current">请选择</div><div class="pretty-options"></div></div></div><div><label>期望风格（选填）</label><input id="style" name="style" placeholder="例如：简洁、正式、科技风"></div>
 <div class="full"><label>具体需求</label><textarea id="details" name="details" placeholder="请写清页数、课程、要求、是否加急等。"></textarea></div><div class="full"><button id="submitOrderBtn" type="button" onclick="submitOrder()">提交需求并生成进度链接</button></div>
 </div></form><div id="result" class="result"></div></div></section>
 <section class="container fade"><h2 class="title">联系方式</h2><div class="box" style="text-align:center"><p>微信：17781762502</p><p>QQ：2241037918</p><p>邮箱：2241037918@qq.com</p></div></section><div class="footer">© 2026 小蔡同学文档工作室</div>
@@ -78,9 +143,38 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 let content=null;const result=document.getElementById("result");
 function showFade(){document.querySelectorAll(".fade").forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-80)el.classList.add("show")})}addEventListener("scroll",showFade);showFade();
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
-async function loadContent(){const r=await fetch("/api/site-content");content=await r.json();serviceCards.innerHTML=(content.services||[]).map(s=>`<div class="card"><h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p><div class="service-tags">${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p class="service-action"><a class="btn" style="background:#2563eb;color:white" href="/service/${encodeURIComponent(s.slug)}">查看详情与价目表</a></p></div>`).join("");service.innerHTML='<option value="">请选择</option>'+(content.services||[]).map(s=>`<option>${esc(s.name)}</option>`).join("")+'<option>其他需求</option>'}
+
+function buildPrettyService(){
+  const sel=document.getElementById("service");
+  const pretty=document.getElementById("prettyService");
+  if(!sel||!pretty) return;
+  const current=pretty.querySelector(".pretty-select-current");
+  const box=pretty.querySelector(".pretty-options");
+  const opts=[...sel.options];
+  box.innerHTML=opts.map((o,i)=>`<div class="pretty-option ${i===sel.selectedIndex?"active":""}" data-index="${i}">${esc(o.textContent)}</div>`).join("");
+  current.textContent=opts[sel.selectedIndex]?.textContent||"请选择";
+  pretty.onclick=(ev)=>{
+    const opt=ev.target.closest(".pretty-option");
+    if(opt){
+      const i=Number(opt.dataset.index);
+      sel.selectedIndex=i;
+      current.textContent=sel.options[i].textContent;
+      box.querySelectorAll(".pretty-option").forEach(x=>x.classList.remove("active"));
+      opt.classList.add("active");
+      pretty.classList.remove("open");
+      return;
+    }
+    pretty.classList.toggle("open");
+  };
+}
+document.addEventListener("click",(ev)=>{
+  const pretty=document.getElementById("prettyService");
+  if(pretty && !pretty.contains(ev.target)) pretty.classList.remove("open");
+});
+
+async function loadContent(){const r=await fetch("/api/site-content");content=await r.json();serviceCards.innerHTML=(content.services||[]).map(s=>`<div class="card"><h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p><div class="service-tags">${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p class="service-action"><a class="btn" style="background:#2563eb;color:white" href="/service/${encodeURIComponent(s.slug)}">查看详情与价目表</a></p></div>`).join("");service.innerHTML='<option value="">请选择</option>'+(content.services||[]).map(s=>`<option>${esc(s.name)}</option>`).join("")+'<option>其他需求</option>';buildPrettyService()}
 async function copyText(t){try{await navigator.clipboard.writeText(t);alert("已复制链接")}catch(e){prompt("复制这个链接保存：",t)}}
 function val(id){const el=document.getElementById(id);return String((el&&el.value)||"").trim()}function loading(b){submitOrderBtn.disabled=!!b;submitOrderBtn.textContent=b?"正在提交，请稍等...":"提交需求并生成进度链接"}
-async function submitOrder(){loading(true);const data={name:val("name"),contact:val("contact"),email:val("email"),service:val("service"),deadline:val("deadline"),style:val("style"),details:val("details")};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请把称呼、联系方式、服务类型和具体需求填写完整。";loading(false);return}result.className="result success";result.textContent="正在提交订单，请稍等...";try{const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),20000);const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),signal:controller.signal});clearTimeout(timeoutId);const res=await r.json();if(!r.ok||!res.success)throw new Error(res.message||"提交失败");const o=res.order,link=location.origin+o.trackPath;alert("订单已提交成功！请复制并保存订单号："+o.orderNo+"，方便后续查询进度。");result.className="result success";result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，定金可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;orderForm.reset()}catch(err){result.className="result error";result.innerHTML=`提交失败：${err.name==="AbortError"?"后端响应超时，请稍后再试":err.message}<br>也可以直接联系微信 17781762502。`}finally{loading(false)}}
+async function submitOrder(){loading(true);const data={name:val("name"),contact:val("contact"),email:val("email"),service:val("service"),deadline:val("deadline"),style:val("style"),details:val("details")};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请把称呼、联系方式、服务类型和具体需求填写完整。";loading(false);return}result.className="result success";result.textContent="正在提交订单，请稍等...";try{const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),20000);const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),signal:controller.signal});clearTimeout(timeoutId);const res=await r.json();if(!r.ok||!res.success)throw new Error(res.message||"提交失败");const o=res.order,link=location.origin+o.trackPath;alert("订单已提交成功！请复制并保存订单号："+o.orderNo+"，方便后续查询进度。");result.className="result success";result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，定金可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;orderForm.reset();buildPrettyService()}catch(err){result.className="result error";result.innerHTML=`提交失败：${err.name==="AbortError"?"后端响应超时，请稍后再试":err.message}<br>也可以直接联系微信 17781762502。`}finally{loading(false)}}
 loadContent();
 </script></body></html>
