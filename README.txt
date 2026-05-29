@@ -78,3 +78,11 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
 2. 已加入学习计划网页详情页 /service/study-web。
 3. 不再使用滚动框，图片直接完整展示。
 4. 学习计划案例改为单列展示，避免两栏压缩导致看不清。
+
+
+本次新增：PPT美化案例
+1. 已加入西南大学主题单页PPT案例图：
+   public/assets/examples/swu-ppt-example.png
+2. 已加入 PPT美化 详情页：
+   /service/ppt
+3. 案例图会直接完整展示，并提供“打开原图查看”按钮。
