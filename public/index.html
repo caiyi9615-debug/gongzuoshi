@@ -19,6 +19,29 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 .card .btn{align-self:flex-start;margin-top:auto}
 .card h3{min-height:32px}
 
+
+/* 首页服务卡片按钮统一贴底对齐 */
+#serviceCards{align-items:stretch}
+#serviceCards .card{
+  min-height:340px;
+  display:flex;
+  flex-direction:column;
+}
+#serviceCards .card h3{min-height:34px}
+#serviceCards .card p:first-of-type{
+  min-height:96px;
+}
+#serviceCards .card .service-tags{
+  min-height:76px;
+  margin-bottom:18px;
+}
+#serviceCards .card .service-action{
+  margin-top:auto !important;
+}
+#serviceCards .card .service-action .btn{
+  margin-top:0 !important;
+}
+
 </style>
 </head>
 <body>
@@ -55,7 +78,7 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 let content=null;const result=document.getElementById("result");
 function showFade(){document.querySelectorAll(".fade").forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-80)el.classList.add("show")})}addEventListener("scroll",showFade);showFade();
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
-async function loadContent(){const r=await fetch("/api/site-content");content=await r.json();serviceCards.innerHTML=(content.services||[]).map(s=>`<div class="card"><h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p><div>${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p style="margin-top:14px"><a class="btn" style="background:#2563eb;color:white" href="/service/${encodeURIComponent(s.slug)}">查看详情与价目表</a></p></div>`).join("");service.innerHTML='<option value="">请选择</option>'+(content.services||[]).map(s=>`<option>${esc(s.name)}</option>`).join("")+'<option>其他需求</option>'}
+async function loadContent(){const r=await fetch("/api/site-content");content=await r.json();serviceCards.innerHTML=(content.services||[]).map(s=>`<div class="card"><h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p><div class="service-tags">${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p class="service-action"><a class="btn" style="background:#2563eb;color:white" href="/service/${encodeURIComponent(s.slug)}">查看详情与价目表</a></p></div>`).join("");service.innerHTML='<option value="">请选择</option>'+(content.services||[]).map(s=>`<option>${esc(s.name)}</option>`).join("")+'<option>其他需求</option>'}
 async function copyText(t){try{await navigator.clipboard.writeText(t);alert("已复制链接")}catch(e){prompt("复制这个链接保存：",t)}}
 function val(id){const el=document.getElementById(id);return String((el&&el.value)||"").trim()}function loading(b){submitOrderBtn.disabled=!!b;submitOrderBtn.textContent=b?"正在提交，请稍等...":"提交需求并生成进度链接"}
 async function submitOrder(){loading(true);const data={name:val("name"),contact:val("contact"),email:val("email"),service:val("service"),deadline:val("deadline"),style:val("style"),details:val("details")};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请把称呼、联系方式、服务类型和具体需求填写完整。";loading(false);return}result.className="result success";result.textContent="正在提交订单，请稍等...";try{const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),20000);const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),signal:controller.signal});clearTimeout(timeoutId);const res=await r.json();if(!r.ok||!res.success)throw new Error(res.message||"提交失败");const o=res.order,link=location.origin+o.trackPath;alert("订单已提交成功！请复制并保存订单号："+o.orderNo+"，方便后续查询进度。");result.className="result success";result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，定金可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;orderForm.reset()}catch(err){result.className="result error";result.innerHTML=`提交失败：${err.name==="AbortError"?"后端响应超时，请稍后再试":err.message}<br>也可以直接联系微信 17781762502。`}finally{loading(false)}}
