@@ -3,38 +3,19 @@
 <title>服务详情</title><style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",Arial,sans-serif}body{background:#f5f7fb;color:#172033;line-height:1.75}a{text-decoration:none;color:#2563eb;font-weight:800}.top{background:linear-gradient(135deg,#3b82f6,#1e40af);color:white;padding:56px 20px}.wrap{max-width:1100px;margin:auto}.top h1{font-size:38px}.top p{max-width:760px;margin-top:12px}.btn,button{border:0;border-radius:999px;padding:12px 22px;font-weight:900;cursor:pointer;display:inline-block;transition:.25s}.btn{background:white;color:#1e40af;margin-top:18px;margin-right:8px}.btn.blue{background:#2563eb;color:white}.container{max-width:1100px;margin:auto;padding:34px 20px}.box,.card{background:white;border-radius:22px;padding:24px;box-shadow:0 8px 22px rgba(30,64,175,.08);margin-bottom:18px}.title{color:#1e3a8a;margin-bottom:12px}.tags span{display:inline-block;background:#eff6ff;color:#1e40af;padding:4px 10px;border-radius:999px;font-size:13px;margin:3px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.example img{width:100%;border-radius:16px;margin:12px 0;background:#f1f5f9;min-height:120px;object-fit:cover}.placeholder{height:160px;border-radius:16px;background:linear-gradient(135deg,#eff6ff,#f8fafc);display:grid;place-items:center;color:#64748b;margin:12px 0}.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.price-card{border:1px solid #e2e8f0;border-radius:18px;padding:18px}.price-card h3{color:#1e3a8a}.price-main{color:#2563eb;font-size:24px;font-weight:900;margin:8px 0}.notice{background:#eff6ff;border-left:5px solid #2563eb;border-radius:14px;padding:16px;color:#1e3a8a}li{margin-left:20px;color:#475569}@media(max-width:760px){.top h1{font-size:30px}}
 
-
-.detail-examples.study-long-mode{grid-template-columns:1fr}
-.study-long-mode .card{padding:28px}
-.long-preview{
-  height:620px;
-  overflow:auto;
+.detail-examples.study-direct-mode{grid-template-columns:1fr}
+.study-direct-mode .card{padding:28px}
+.study-direct-mode .example-img,
+.example-img{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
   border-radius:18px;
   border:1px solid #dbeafe;
   background:#f8fafc;
-  margin:12px 0;
-  box-shadow:inset 0 0 0 1px rgba(37,99,235,.04);
-  text-align:center;
-}
-.long-preview img{
-  width:auto;
-  max-width:none;
-  min-width:auto;
-  height:auto;
-  border-radius:0;
-  margin:0 auto;
-  display:block;
-  object-fit:initial;
-  image-rendering:auto;
-}
-.scroll-tip{
-  font-size:13px;
-  color:#64748b;
-  background:#eff6ff;
-  border-radius:999px;
-  padding:6px 10px;
-  display:inline-block;
-  margin:6px 0 2px;
+  margin:14px 0;
+  box-shadow:0 10px 28px rgba(30,64,175,.10);
 }
 .open-original{
   display:inline-block;
@@ -45,21 +26,6 @@
   padding:8px 14px;
   font-size:13px;
   font-weight:900;
-}
-.long-preview::-webkit-scrollbar{width:8px;height:8px}
-.long-preview::-webkit-scrollbar-thumb{background:#93c5fd;border-radius:999px}
-.long-preview::-webkit-scrollbar-track{background:#eff6ff;border-radius:999px}
-@media(max-width:760px){
-  .long-preview{height:520px}
-  .long-preview img{max-width:none}
-}
-
-
-
-.long-preview img[src$=".svg"]{
-  width:100%;
-  max-width:100%;
-  height:auto;
 }
 
 </style></head><body>
@@ -74,6 +40,6 @@
 <script>
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
 function slug(){let p=location.pathname.split("/").filter(Boolean);return p[1]||""}
-async function load(){let r=await fetch("/api/site-content"),d=await r.json();let s=(d.services||[]).find(x=>x.slug===slug())||(d.services||[])[0];if(!s){document.body.innerHTML="未找到服务";return}document.title=s.name+" - 小蔡同学文档工作室";document.getElementById("examples").classList.toggle("study-long-mode", s.slug==="study-web");name.textContent=s.name;desc.textContent=s.desc||"";intro.textContent=s.intro||s.desc||"";tags.innerHTML=(s.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");process.innerHTML=(s.process||[]).map(i=>`<li>${esc(i)}</li>`).join("");examples.innerHTML=(s.examples||[]).map(e=>`<div class="card example"><h3>${esc(e.title)}</h3><p>${esc(e.desc)}</p>${e.image?`<div class="scroll-tip">在图片框内上下滑动查看完整长图，点击下方按钮可打开原图</div><a class="open-original" href="${esc(e.image)}" target="_blank">打开原图高清查看</a><div class="long-preview"><img src="${esc(e.image)}" alt="${esc(e.title)}"></div>`:`<div class="placeholder">暂无图片，可在后台填写图片链接</div>`}<ul>${(e.items||[]).map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");prices.innerHTML=(s.pricing||[]).map(p=>`<div class="price-card"><h3>${esc(p.name)}</h3><div class="price-main">${esc(p.price)}</div><p>定金：<b>${esc(p.deposit)}</b></p><p>${esc(p.desc)}</p></div>`).join("");notices.innerHTML=(s.notices||[]).map(i=>`<li>${esc(i)}</li>`).join("");globalNote.textContent=d.pricingNote||""}
+async function load(){let r=await fetch("/api/site-content"),d=await r.json();let s=(d.services||[]).find(x=>x.slug===slug())||(d.services||[])[0];if(!s){document.body.innerHTML="未找到服务";return}document.title=s.name+" - 小蔡同学文档工作室";document.getElementById("examples").classList.toggle("study-direct-mode", s.slug==="study-web");name.textContent=s.name;desc.textContent=s.desc||"";intro.textContent=s.intro||s.desc||"";tags.innerHTML=(s.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("");process.innerHTML=(s.process||[]).map(i=>`<li>${esc(i)}</li>`).join("");examples.innerHTML=(s.examples||[]).map(e=>`<div class="card example"><h3>${esc(e.title)}</h3><p>${esc(e.desc)}</p>${e.image?`<a class="open-original" href="${esc(e.image)}" target="_blank">打开原图查看</a><img class="example-img" src="${esc(e.image)}" alt="${esc(e.title)}">`:`<div class="placeholder">暂无图片，可在后台填写图片链接</div>`}<ul>${(e.items||[]).map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");prices.innerHTML=(s.pricing||[]).map(p=>`<div class="price-card"><h3>${esc(p.name)}</h3><div class="price-main">${esc(p.price)}</div><p>定金：<b>${esc(p.deposit)}</b></p><p>${esc(p.desc)}</p></div>`).join("");notices.innerHTML=(s.notices||[]).map(i=>`<li>${esc(i)}</li>`).join("");globalNote.textContent=d.pricingNote||""}
 load();
 </script></body></html>

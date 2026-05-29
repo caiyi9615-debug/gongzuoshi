@@ -70,28 +70,11 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
 
 本次修改：新增“网站制作”服务分类（/service/web-service），按给别人做网站的标准说明静态展示页、带后台网站、完整接单系统，并明确服务器/域名/数据库等第三方费用由客户承担。
 
-本次新增：每个项目详情页均已加入内置示例图，示例图位于 public/assets/examples/，后续可在 /admin-content 中替换为真实案例图片链接。
 
-
-本次新增：学习计划长图滚动案例
-1. 已把两张长图加入 public/assets/examples/：
-   - danzi-study-long.jpeg
-   - mimi-checkin-long.jpeg
-2. 已加入“学习计划网页”详情页 /service/study-web。
-3. 案例图片采用固定高度滚动预览框：页面不动，图片在框内上下滑动。
-4. 后续仍可在 /admin-content 中替换 image 路径。
-
-
-本次修复：长图案例显示模糊
-1. 学习计划网页详情页案例改成单列展示。
-2. 长图不再强行拉伸到卡片宽度，按原始比例显示，减少模糊。
-3. 图片框支持上下滚动和必要时左右滚动。
-4. 每个案例新增“打开原图高清查看”按钮。
-
-本次修复：学习计划案例图彻底高清化
-1. 原长截图分辨率过低，放大后必然模糊。
-2. 已改为高清 SVG 矢量重绘案例：
-   - study-plan-clear-vector.svg
-   - checkin-clear-vector.svg
-3. 在 /service/study-web 中展示，缩放也不会糊。
-4. 原来的真实截图可作为参考，但不建议直接作为客户展示主图。
+本次修改：学习计划案例图直接完整展示
+1. 已加入两张新清晰图：
+   - public/assets/examples/study-web-blue-example.png
+   - public/assets/examples/study-web-mimi-example.png
+2. 已加入学习计划网页详情页 /service/study-web。
+3. 不再使用滚动框，图片直接完整展示。
+4. 学习计划案例改为单列展示，避免两栏压缩导致看不清。
