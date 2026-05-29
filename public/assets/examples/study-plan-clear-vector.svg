@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="3330" viewBox="0 0 1000 3330">
+      <defs>
+        <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="#dff0ff"/><stop offset="1" stop-color="#f7fbff"/>
+        </linearGradient>
+        <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1e40af" flood-opacity=".12"/></filter>
+      </defs>
+      <rect width="1000" height="3330" fill="#f4f8ff"/>
+      <rect x="42" y="40" width="916" height="260" rx="34" fill="url(#hero)" filter="url(#shadow)"/>
+      <text x="85" y="115" font-size="42" font-weight="900" fill="#0f2a55">期末复习计划网站示例</text>
+      <text x="85" y="158" font-size="24" fill="#475569">适合多科复习、每日任务、进度追踪和错题复盘</text>
+      <rect x="85" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="112" y="234" font-size="25" font-weight="800" fill="#2563eb">10天计划</text>
+      <rect x="270" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="300" y="234" font-size="25" font-weight="800" fill="#16a34a">4门科目</text>
+      <rect x="455" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="485" y="234" font-size="25" font-weight="800" fill="#f97316">每日打卡</text>
+      <rect x="640" y="195" width="235" height="62" rx="18" fill="#ffffff"/><text x="672" y="234" font-size="25" font-weight="800" fill="#7c3aed">进度可视化</text>
+      
+        <g>
+          <rect x="70" y="360" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="388" width="96" height="76" rx="18" fill="#2563eb" opacity=".12"/>
+          <text x="112" y="432" font-size="28" font-weight="800" fill="#2563eb">5.26</text>
+          <text x="220" y="408" font-size="30" font-weight="800" fill="#0f2a55">高等数学基础回顾</text>
+          <text x="220" y="438" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="448" font-size="23" fill="#26364a">• 函数极限与连续</text><text x="230" y="484" font-size="23" fill="#26364a">• 导数公式复习</text><text x="230" y="520" font-size="23" fill="#26364a">• 典型题 8 道</text><text x="230" y="556" font-size="23" fill="#26364a">• 晚上整理错题</text>
+          <rect x="670" y="430" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="415" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="452" font-size="22" fill="#334155">✓ 完成基础概念</text><text x="700" y="492" font-size="22" fill="#334155">✓ 标记薄弱点</text>
+        </g>
+        <g>
+          <rect x="70" y="648" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="676" width="96" height="76" rx="18" fill="#0ea5e9" opacity=".12"/>
+          <text x="112" y="720" font-size="28" font-weight="800" fill="#0ea5e9">5.27</text>
+          <text x="220" y="696" font-size="30" font-weight="800" fill="#0f2a55">线性代数矩阵</text>
+          <text x="220" y="726" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="736" font-size="23" fill="#26364a">• 矩阵运算</text><text x="230" y="772" font-size="23" fill="#26364a">• 逆矩阵与初等变换</text><text x="230" y="808" font-size="23" fill="#26364a">• 课后题 10 道</text><text x="230" y="844" font-size="23" fill="#26364a">• 总结常用方法</text>
+          <rect x="670" y="718" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="703" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="740" font-size="22" fill="#334155">✓ 重点看行变换</text><text x="700" y="780" font-size="22" fill="#334155">✓ 错题归档</text>
+        </g>
+        <g>
+          <rect x="70" y="936" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="964" width="96" height="76" rx="18" fill="#16a34a" opacity=".12"/>
+          <text x="112" y="1008" font-size="28" font-weight="800" fill="#16a34a">5.28</text>
+          <text x="220" y="984" font-size="30" font-weight="800" fill="#0f2a55">大学物理力学</text>
+          <text x="220" y="1014" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="1024" font-size="23" fill="#26364a">• 质点运动学</text><text x="230" y="1060" font-size="23" fill="#26364a">• 牛顿定律</text><text x="230" y="1096" font-size="23" fill="#26364a">• 功和能</text><text x="230" y="1132" font-size="23" fill="#26364a">• 整理公式卡片</text>
+          <rect x="670" y="1006" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="991" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="1028" font-size="22" fill="#334155">✓ 公式会用</text><text x="700" y="1068" font-size="22" fill="#334155">✓ 例题复盘</text>
+        </g>
+        <g>
+          <rect x="70" y="1224" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="1252" width="96" height="76" rx="18" fill="#2563eb" opacity=".12"/>
+          <text x="112" y="1296" font-size="28" font-weight="800" fill="#2563eb">5.29</text>
+          <text x="220" y="1272" font-size="30" font-weight="800" fill="#0f2a55">电路原理基础</text>
+          <text x="220" y="1302" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="1312" font-size="23" fill="#26364a">• 电阻电路</text><text x="230" y="1348" font-size="23" fill="#26364a">• 基尔霍夫定律</text><text x="230" y="1384" font-size="23" fill="#26364a">• 等效变换</text><text x="230" y="1420" font-size="23" fill="#26364a">• 戴维南定理</text>
+          <rect x="670" y="1294" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="1279" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="1316" font-size="22" fill="#334155">✓ 画电路图</text><text x="700" y="1356" font-size="22" fill="#334155">✓ 步骤规范</text>
+        </g>
+        <g>
+          <rect x="70" y="1512" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="1540" width="96" height="76" rx="18" fill="#0ea5e9" opacity=".12"/>
+          <text x="112" y="1584" font-size="28" font-weight="800" fill="#0ea5e9">5.30</text>
+          <text x="220" y="1560" font-size="30" font-weight="800" fill="#0f2a55">高数积分专题</text>
+          <text x="220" y="1590" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="1600" font-size="23" fill="#26364a">• 不定积分方法</text><text x="230" y="1636" font-size="23" fill="#26364a">• 定积分性质</text><text x="230" y="1672" font-size="23" fill="#26364a">• 换元与分部积分</text><text x="230" y="1708" font-size="23" fill="#26364a">• 综合题训练</text>
+          <rect x="670" y="1582" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="1567" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="1604" font-size="22" fill="#334155">✓ 计算准确率</text><text x="700" y="1644" font-size="22" fill="#334155">✓ 控制时间</text>
+        </g>
+        <g>
+          <rect x="70" y="1800" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="1828" width="96" height="76" rx="18" fill="#16a34a" opacity=".12"/>
+          <text x="112" y="1872" font-size="28" font-weight="800" fill="#16a34a">5.31</text>
+          <text x="220" y="1848" font-size="30" font-weight="800" fill="#0f2a55">线代方程组</text>
+          <text x="220" y="1878" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="1888" font-size="23" fill="#26364a">• 向量组</text><text x="230" y="1924" font-size="23" fill="#26364a">• 线性相关</text><text x="230" y="1960" font-size="23" fill="#26364a">• 秩的计算</text><text x="230" y="1996" font-size="23" fill="#26364a">• 方程组解法</text>
+          <rect x="670" y="1870" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="1855" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="1892" font-size="22" fill="#334155">✓ 概念辨析</text><text x="700" y="1932" font-size="22" fill="#334155">✓ 题型归纳</text>
+        </g>
+        <g>
+          <rect x="70" y="2088" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="2116" width="96" height="76" rx="18" fill="#2563eb" opacity=".12"/>
+          <text x="112" y="2160" font-size="28" font-weight="800" fill="#2563eb">6.1</text>
+          <text x="220" y="2136" font-size="30" font-weight="800" fill="#0f2a55">物理电磁学</text>
+          <text x="220" y="2166" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="2176" font-size="23" fill="#26364a">• 电场强度</text><text x="230" y="2212" font-size="23" fill="#26364a">• 高斯定理</text><text x="230" y="2248" font-size="23" fill="#26364a">• 电势能</text><text x="230" y="2284" font-size="23" fill="#26364a">• 典型例题</text>
+          <rect x="670" y="2158" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="2143" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="2180" font-size="22" fill="#334155">✓ 公式记忆</text><text x="700" y="2220" font-size="22" fill="#334155">✓ 单位检查</text>
+        </g>
+        <g>
+          <rect x="70" y="2376" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="2404" width="96" height="76" rx="18" fill="#0ea5e9" opacity=".12"/>
+          <text x="112" y="2448" font-size="28" font-weight="800" fill="#0ea5e9">6.2</text>
+          <text x="220" y="2424" font-size="30" font-weight="800" fill="#0f2a55">综合复盘</text>
+          <text x="220" y="2454" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="2464" font-size="23" fill="#26364a">• 上午高数</text><text x="230" y="2500" font-size="23" fill="#26364a">• 下午线代</text><text x="230" y="2536" font-size="23" fill="#26364a">• 晚上物理</text><text x="230" y="2572" font-size="23" fill="#26364a">• 错题二刷</text>
+          <rect x="670" y="2446" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="2431" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="2468" font-size="22" fill="#334155">✓ 查漏补缺</text><text x="700" y="2508" font-size="22" fill="#334155">✓ 安排次日重点</text>
+        </g>
+        <g>
+          <rect x="70" y="2664" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="2692" width="96" height="76" rx="18" fill="#16a34a" opacity=".12"/>
+          <text x="112" y="2736" font-size="28" font-weight="800" fill="#16a34a">6.3</text>
+          <text x="220" y="2712" font-size="30" font-weight="800" fill="#0f2a55">模拟测试</text>
+          <text x="220" y="2742" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="2752" font-size="23" fill="#26364a">• 限时做卷</text><text x="230" y="2788" font-size="23" fill="#26364a">• 统计失分点</text><text x="230" y="2824" font-size="23" fill="#26364a">• 重点题回看</text><text x="230" y="2860" font-size="23" fill="#26364a">• 整理答题模板</text>
+          <rect x="670" y="2734" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="2719" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="2756" font-size="22" fill="#334155">✓ 模拟考试</text><text x="700" y="2796" font-size="22" fill="#334155">✓ 心态调整</text>
+        </g>
+        <g>
+          <rect x="70" y="2952" width="860" height="250" rx="26" fill="#ffffff" stroke="#dbeafe" filter="url(#shadow)"/>
+          <rect x="94" y="2980" width="96" height="76" rx="18" fill="#2563eb" opacity=".12"/>
+          <text x="112" y="3024" font-size="28" font-weight="800" fill="#2563eb">6.4</text>
+          <text x="220" y="3000" font-size="30" font-weight="800" fill="#0f2a55">考前冲刺</text>
+          <text x="220" y="3030" font-size="18" fill="#64748b">每日任务 · 可打卡 · 可复盘</text>
+          <text x="230" y="3040" font-size="23" fill="#26364a">• 公式速记</text><text x="230" y="3076" font-size="23" fill="#26364a">• 错题三刷</text><text x="230" y="3112" font-size="23" fill="#26364a">• 易错点提醒</text><text x="230" y="3148" font-size="23" fill="#26364a">• 早睡复盘</text>
+          <rect x="670" y="3022" width="220" height="126" rx="18" fill="#f8fbff" stroke="#e2e8f0"/>
+          <text x="700" y="3007" font-size="20" font-weight="800" fill="#64748b">今日重点</text>
+          <text x="700" y="3044" font-size="22" fill="#334155">✓ 轻量复习</text><text x="700" y="3084" font-size="22" fill="#334155">✓ 保持状态</text>
+        </g>
+      <text x="70" y="3294" font-size="20" fill="#64748b">高清矢量示例图 · 实际网站可按客户科目和时间定制</text>
+    </svg>

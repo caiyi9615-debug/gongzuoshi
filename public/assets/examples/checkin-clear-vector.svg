@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="2230" viewBox="0 0 1000 2230">
+      <defs>
+        <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="#fff1e7"/><stop offset="1" stop-color="#fff7ed"/>
+        </linearGradient>
+        <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#9a3412" flood-opacity=".12"/></filter>
+      </defs>
+      <rect width="1000" height="2230" fill="#fff7ed"/>
+      <rect x="42" y="40" width="916" height="260" rx="34" fill="url(#hero)" filter="url(#shadow)"/>
+      <text x="85" y="115" font-size="42" font-weight="900" fill="#7f1d1d">每日打卡网站示例</text>
+      <text x="85" y="158" font-size="24" fill="#7c4a3a">适合学习任务、健身计划、长期习惯和进度统计</text>
+      <rect x="85" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="116" y="234" font-size="25" font-weight="800" fill="#ef4444">任务卡片</text>
+      <rect x="270" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="300" y="234" font-size="25" font-weight="800" fill="#f97316">状态标签</text>
+      <rect x="455" y="195" width="160" height="62" rx="18" fill="#ffffff"/><text x="488" y="234" font-size="25" font-weight="800" fill="#16a34a">进度统计</text>
+      <rect x="640" y="195" width="235" height="62" rx="18" fill="#ffffff"/><text x="675" y="234" font-size="25" font-weight="800" fill="#db2777">长期坚持</text>
+      
+        <g>
+          <rect x="70" y="360" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="394" width="84" height="72" rx="20" fill="#ef6a7a" opacity=".13"/>
+          <text x="112" y="438" font-size="28" font-weight="900" fill="#ef6a7a">5.27</text>
+          <text x="210" y="412" font-size="30" font-weight="900" fill="#7f1d1d">今日学习任务</text>
+          <text x="210" y="442" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="440" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="468" font-size="22" fill="#26364a">高数视频 2 节</text>
+            <rect x="480" y="444" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="464" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="494" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="522" font-size="22" fill="#26364a">线代例题 8 道</text>
+            <rect x="480" y="498" width="86" height="28" rx="14" fill="#f97316" opacity=".14"/>
+            <text x="498" y="518" font-size="16" font-weight="800" fill="#f97316">进行中</text>
+            <rect x="210" y="548" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="576" font-size="22" fill="#26364a">错题整理</text>
+            <rect x="480" y="552" width="86" height="28" rx="14" fill="#94a3b8" opacity=".14"/>
+            <text x="498" y="572" font-size="16" font-weight="800" fill="#94a3b8">待完成</text>
+          <rect x="660" y="434" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="418" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="472" font-size="22" fill="#334155">☑ 连续打卡 3 天</text><text x="690" y="516" font-size="22" fill="#334155">☑ 今日完成率 67%</text>
+        </g>
+        <g>
+          <rect x="70" y="655" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="689" width="84" height="72" rx="20" fill="#f59e0b" opacity=".13"/>
+          <text x="112" y="733" font-size="28" font-weight="900" fill="#f59e0b">5.28</text>
+          <text x="210" y="707" font-size="30" font-weight="900" fill="#7f1d1d">复习 + 健身计划</text>
+          <text x="210" y="737" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="735" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="763" font-size="22" fill="#26364a">物理公式背诵</text>
+            <rect x="480" y="739" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="759" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="789" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="817" font-size="22" fill="#26364a">爬坡有氧 30 分钟</text>
+            <rect x="480" y="793" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="813" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="843" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="871" font-size="22" fill="#26364a">英语单词 50 个</text>
+            <rect x="480" y="847" width="86" height="28" rx="14" fill="#94a3b8" opacity=".14"/>
+            <text x="498" y="867" font-size="16" font-weight="800" fill="#94a3b8">待完成</text>
+          <rect x="660" y="729" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="713" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="767" font-size="22" fill="#334155">☑ 运动已打卡</text><text x="690" y="811" font-size="22" fill="#334155">☑ 学习 4.5 小时</text>
+        </g>
+        <g>
+          <rect x="70" y="950" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="984" width="84" height="72" rx="20" fill="#ef6a7a" opacity=".13"/>
+          <text x="112" y="1028" font-size="28" font-weight="900" fill="#ef6a7a">5.29</text>
+          <text x="210" y="1002" font-size="30" font-weight="900" fill="#7f1d1d">课程汇总复盘</text>
+          <text x="210" y="1032" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="1030" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1058" font-size="22" fill="#26364a">电路网课 1 节</text>
+            <rect x="480" y="1034" width="86" height="28" rx="14" fill="#f97316" opacity=".14"/>
+            <text x="498" y="1054" font-size="16" font-weight="800" fill="#f97316">进行中</text>
+            <rect x="210" y="1084" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1112" font-size="22" fill="#26364a">高数积分专题</text>
+            <rect x="480" y="1088" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1108" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="1138" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1166" font-size="22" fill="#26364a">整理公式表</text>
+            <rect x="480" y="1142" width="86" height="28" rx="14" fill="#94a3b8" opacity=".14"/>
+            <text x="498" y="1162" font-size="16" font-weight="800" fill="#94a3b8">待完成</text>
+          <rect x="660" y="1024" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="1008" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="1062" font-size="22" fill="#334155">☑ 重点：积分</text><text x="690" y="1106" font-size="22" fill="#334155">☑ 错题 5 道</text>
+        </g>
+        <g>
+          <rect x="70" y="1245" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="1279" width="84" height="72" rx="20" fill="#f59e0b" opacity=".13"/>
+          <text x="112" y="1323" font-size="28" font-weight="900" fill="#f59e0b">5.30</text>
+          <text x="210" y="1297" font-size="30" font-weight="900" fill="#7f1d1d">模拟训练日</text>
+          <text x="210" y="1327" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="1325" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1353" font-size="22" fill="#26364a">限时小测 60 分钟</text>
+            <rect x="480" y="1329" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1349" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="1379" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1407" font-size="22" fill="#26364a">订正错题</text>
+            <rect x="480" y="1383" width="86" height="28" rx="14" fill="#f97316" opacity=".14"/>
+            <text x="498" y="1403" font-size="16" font-weight="800" fill="#f97316">进行中</text>
+            <rect x="210" y="1433" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1461" font-size="22" fill="#26364a">晚上轻复盘</text>
+            <rect x="480" y="1437" width="86" height="28" rx="14" fill="#94a3b8" opacity=".14"/>
+            <text x="498" y="1457" font-size="16" font-weight="800" fill="#94a3b8">待完成</text>
+          <rect x="660" y="1319" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="1303" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="1357" font-size="22" fill="#334155">☑ 正确率 78%</text><text x="690" y="1401" font-size="22" fill="#334155">☑ 待提升：计算</text>
+        </g>
+        <g>
+          <rect x="70" y="1540" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="1574" width="84" height="72" rx="20" fill="#ef6a7a" opacity=".13"/>
+          <text x="112" y="1618" font-size="28" font-weight="900" fill="#ef6a7a">5.31</text>
+          <text x="210" y="1592" font-size="30" font-weight="900" fill="#7f1d1d">查漏补缺</text>
+          <text x="210" y="1622" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="1620" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1648" font-size="22" fill="#26364a">线代秩专题</text>
+            <rect x="480" y="1624" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1644" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="1674" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1702" font-size="22" fill="#26364a">物理例题</text>
+            <rect x="480" y="1678" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1698" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="1728" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1756" font-size="22" fill="#26364a">高数错题二刷</text>
+            <rect x="480" y="1732" width="86" height="28" rx="14" fill="#f97316" opacity=".14"/>
+            <text x="498" y="1752" font-size="16" font-weight="800" fill="#f97316">进行中</text>
+          <rect x="660" y="1614" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="1598" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="1652" font-size="22" fill="#334155">☑ 今日较稳定</text><text x="690" y="1696" font-size="22" fill="#334155">☑ 继续保持</text>
+        </g>
+        <g>
+          <rect x="70" y="1835" width="860" height="255" rx="28" fill="#fffaf7" stroke="#fed7aa" filter="url(#shadow)"/>
+          <rect x="96" y="1869" width="84" height="72" rx="20" fill="#f59e0b" opacity=".13"/>
+          <text x="112" y="1913" font-size="28" font-weight="900" fill="#f59e0b">6.1</text>
+          <text x="210" y="1887" font-size="30" font-weight="900" fill="#7f1d1d">考前冲刺</text>
+          <text x="210" y="1917" font-size="18" fill="#9f6b5a">每日任务 · 状态标签 · 完成统计</text>
+          
+            <rect x="210" y="1915" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1943" font-size="22" fill="#26364a">公式速记</text>
+            <rect x="480" y="1919" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1939" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="1969" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="1997" font-size="22" fill="#26364a">重点题回看</text>
+            <rect x="480" y="1973" width="86" height="28" rx="14" fill="#16a34a" opacity=".14"/>
+            <text x="498" y="1993" font-size="16" font-weight="800" fill="#16a34a">已完成</text>
+            <rect x="210" y="2023" width="380" height="42" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+            <text x="230" y="2051" font-size="22" fill="#26364a">早睡</text>
+            <rect x="480" y="2027" width="86" height="28" rx="14" fill="#94a3b8" opacity=".14"/>
+            <text x="498" y="2047" font-size="16" font-weight="800" fill="#94a3b8">待完成</text>
+          <rect x="660" y="1909" width="220" height="126" rx="18" fill="#ffffff" stroke="#fde2cf"/>
+          <text x="690" y="1893" font-size="20" font-weight="800" fill="#9f6b5a">今日记录</text>
+          <text x="690" y="1947" font-size="22" fill="#334155">☑ 完成率 80%</text><text x="690" y="1991" font-size="22" fill="#334155">☑ 明日模拟</text>
+        </g>
+      <text x="70" y="2194" font-size="20" fill="#9f6b5a">高清矢量示例图 · 实际打卡内容可按客户需求定制</text>
+    </svg>
