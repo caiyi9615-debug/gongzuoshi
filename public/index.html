@@ -17,7 +17,7 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 <body>
 <header class="hero">
 <h1>小蔡同学文档工作室</h1>
-<p>PPT美化、Word排版、简历优化、学习计划网页、课程资料整理。点进具体项目可查看详细介绍、示例图和价目表。</p>
+<p>PPT美化、Word排版、简历优化、学习计划网页、课程资料整理，也提供轻量级网站制作。点进具体项目可查看详细介绍、示例图和价目表。</p>
 <a href="#services" class="btn">查看服务</a><a href="#order" class="btn secondary">填写需求</a><a href="/track" class="btn secondary">查询订单</a>
 </header>
 <section class="container fade" id="services">
@@ -25,6 +25,17 @@ a{text-decoration:none;color:#2563eb;font-weight:800}.hero{background:radial-gra
 <div class="cards" id="serviceCards"></div>
 </section>
 <section class="container fade"><h2 class="title">统一付款流程</h2><div class="cards"><div class="card"><h3>1. 提交需求</h3><p>填写服务类型、联系方式和具体要求。</p></div><div class="card"><h3>2. 支付定金</h3><p>定金可抵扣尾款，确认后开始制作。</p></div><div class="card"><h3>3. 制作与确认</h3><p>后台更新进度，客户可随时查看。</p></div><div class="card"><h3>4. 补尾款交付</h3><p>订单完成后补齐尾款，再移交文件。</p></div></div></section>
+
+<section class="container fade" id="deploy-standard">
+<h2 class="title">网站制作交付标准</h2>
+<p class="sub">给别人做网站时，制作费和第三方平台费用分开说明，避免后期争议。</p>
+<div class="cards">
+  <div class="card"><h3>静态展示网站</h3><p>适合个人主页、简历主页、社团招新页、接单展示页。一般不需要 Render 后端，可部署到 GitHub Pages、Netlify、Vercel、Cloudflare Pages。</p><div><span class="tag">打开快</span><span class="tag">维护简单</span><span class="tag">适合展示</span></div></div>
+  <div class="card"><h3>带后台网站</h3><p>适合订单提交、后台管理、进度查询、定金尾款、案例管理等功能。需要后端和数据存储，服务器/数据库费用由客户自行承担。</p><div><span class="tag">功能完整</span><span class="tag">需要后端</span><span class="tag">价格更高</span></div></div>
+  <div class="card"><h3>交付说明</h3><p>默认包含网站源码、部署指导和基础修改。服务器、域名、数据库、图床、云存储等第三方费用不包含在制作费中。</p><div><span class="tag">源码交付</span><span class="tag">部署指导</span><span class="tag">费用分开</span></div></div>
+</div>
+</section>
+
 <section class="container fade" id="order">
 <h2 class="title">填写需求</h2><p class="sub">邮箱为选填。提交后会自动生成专属进度链接，并展示收款码。</p><div class="box"><form id="orderForm" onsubmit="return false;"><div class="grid">
 <div><label>称呼</label><input id="name" name="name" placeholder="例如：张同学"></div><div><label>联系方式</label><input id="contact" name="contact" placeholder="微信 / QQ / 手机号"></div>

@@ -67,3 +67,5 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
 2. 已删除重复的 siteContent 内容接口声明。
 3. 已通过 node --check 检查 server.js 语法。
 4. 保留项目详情页 /service/:slug、内容管理 /admin-content 和图片链接案例功能。
+
+本次修改：新增“网站制作”服务分类（/service/web-service），按给别人做网站的标准说明静态展示页、带后台网站、完整接单系统，并明确服务器/域名/数据库等第三方费用由客户承担。
