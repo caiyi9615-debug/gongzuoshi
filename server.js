@@ -23,4 +23,13 @@ app.post("/api/admin/login",(req,res)=>{if(req.body.password===ADMIN_PASSWORD)re
 app.get("/api/admin/orders",admin,(req,res)=>res.json(read()));
 app.patch("/api/admin/orders/:id",admin,(req,res)=>{let orders=read(),o=orders.find(x=>x.id===Number(req.params.id));if(!o)return res.status(404).json({success:false,message:"未找到订单"});let allowed=["pending_payment","payment_review","deposit_paid","doing","final_payment_due","final_payment_review","balance_paid","delivered","done","cancel"];let fields=["name","contact","email","service","deadline","style","details","status","price","deposit","note","publicNote","paymentNote","balancePaymentNote","deliveryLink","deliveryNote"];for(let f of fields)if(req.body[f]!==undefined){if(f==="status"&&!allowed.includes(req.body[f]))return res.status(400).json({success:false,message:"状态不正确"});o[f]=String(req.body[f]).trim()}o.updatedAt=now();save(orders);res.json({success:true,order:o})});
 app.delete("/api/admin/orders/:id",admin,(req,res)=>{let orders=read(),next=orders.filter(x=>x.id!==Number(req.params.id));if(next.length===orders.length)return res.status(404).json({success:false,message:"未找到订单"});save(next);res.json({success:true})});
-app.listen(PORT,()=>console.log("caistudio running on "+PORT));
+
+const contentPath=path.join(__dirname,"siteContent.json");
+function readContent(){if(!fs.existsSync(contentPath))return {services:[],examples:[],pricing:[],pricingNote:""};try{return JSON.parse(fs.readFileSync(contentPath,"utf-8"))}catch{return {services:[],examples:[],pricing:[],pricingNote:""}}}
+function saveContent(d){fs.writeFileSync(contentPath,JSON.stringify(d,null,2),"utf-8")}
+app.get("/admin-content",(req,res)=>res.sendFile(path.join(__dirname,"public","admin-content.html")));
+app.get("/api/site-content",(req,res)=>res.json(readContent()));
+app.get("/api/admin/site-content",admin,(req,res)=>res.json(readContent()));
+app.patch("/api/admin/site-content",admin,(req,res)=>{saveContent(req.body);res.json({success:true})});
+
+app.listen(PORT,"0.0.0.0",()=>console.log("caistudio running on "+PORT));

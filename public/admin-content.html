@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>内容管理</title>
+<style>
+body{font-family:Arial,"Microsoft YaHei",sans-serif;background:#eef4ff;margin:0;padding:24px;color:#172033}
+.wrap{max-width:1100px;margin:auto}.card{background:#fff;border-radius:22px;box-shadow:0 12px 38px rgba(30,64,175,.14);padding:22px;margin-bottom:18px}
+h1,h2{color:#1e3a8a}p{color:#64748b}input,textarea{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:14px;padding:12px;font-size:14px}
+textarea{min-height:560px;font-family:Consolas,monospace;line-height:1.45}
+button{border:0;border-radius:14px;padding:11px 16px;font-weight:800;cursor:pointer;margin-right:8px}.p{background:#2563eb;color:#fff}.g{background:#f1f5f9;color:#334155}
+.msg{display:none;margin-top:12px;padding:12px;border-radius:12px}.ok{display:block;background:#ecfdf5;color:#047857}.err{display:block;background:#fef2f2;color:#b91c1c}
+</style></head><body><div class="wrap">
+<div class="card"><h1>网站内容管理</h1><p>维护首页服务示例、收费标准。数据会保存到 <b>siteContent.json</b>。</p><p><a href="/admin">订单后台</a> ｜ <a href="/" target="_blank">前台网站</a></p></div>
+<div id="login" class="card"><h2>登录</h2><input id="password" type="password" placeholder="后台密码"><br><br><button class="p" onclick="login()">进入</button><div id="loginMsg" class="msg"></div></div>
+<div id="editor" class="card" style="display:none"><h2>内容 JSON</h2><p>可修改服务、案例和价格。注意保持 JSON 格式正确。</p><textarea id="jsonText"></textarea><br><br><button class="p" onclick="save()">保存</button><button class="g" onclick="load()">重新加载</button><button class="g" onclick="formatJson()">格式化</button><div id="editMsg" class="msg"></div></div>
+</div><script>
+let token=localStorage.getItem("adminToken")||"";
+function msg(id,c,t){let e=document.getElementById(id);e.className="msg "+c;e.textContent=t}
+async function login(){let r=await fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:password.value})}),d=await r.json();if(d.success){token=d.token;localStorage.setItem("adminToken",token);document.getElementById("login").style.display="none";document.getElementById("editor").style.display="block";load()}else msg("loginMsg","err",d.message||"密码错误")}
+async function load(){let r=await fetch("/api/admin/site-content",{headers:{Authorization:"Bearer "+token}});let d=await r.json();jsonText.value=JSON.stringify(d,null,2);msg("editMsg","ok","已加载")}
+function formatJson(){try{jsonText.value=JSON.stringify(JSON.parse(jsonText.value),null,2)}catch(e){msg("editMsg","err",e.message)}}
+async function save(){let data;try{data=JSON.parse(jsonText.value)}catch(e){msg("editMsg","err","JSON格式错误："+e.message);return}let r=await fetch("/api/admin/site-content",{method:"PATCH",headers:{"Content-Type":"application/json",Authorization:"Bearer "+token},body:JSON.stringify(data)}),d=await r.json();msg("editMsg",d.success?"ok":"err",d.success?"保存成功，前台刷新后生效":(d.message||"保存失败"))}
+if(token){document.getElementById("login").style.display="none";document.getElementById("editor").style.display="block";load()}
+</script></body></html>

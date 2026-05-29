@@ -10,6 +10,20 @@
 <div class="card"><h3>学习网页</h3><p>复习计划、打卡表、个人主页。</p><span class="tag">网页</span><span class="tag">二维码</span></div>
 </div></section>
 <section class="container fade"><h2 class="title">价格与付款流程</h2><table class="table"><tr><th>服务类别</th><th>起步价格</th><th>定金</th></tr><tr><td>PPT美化</td><td>9.9元起</td><td>5元</td></tr><tr><td>Word排版</td><td>6.9元起</td><td>3元</td></tr><tr><td>简历优化</td><td>9.9元起</td><td>5元</td></tr><tr><td>学习计划网页</td><td>19.9元起</td><td>9.9元</td></tr><tr><td>资料整理</td><td>9.9元起</td><td>5元</td></tr></table><div class="notice">流程：提交需求 → 支付定金 → 制作 → 完成后补尾款 → 确认尾款后移交文件。定金和尾款都会在订单进度页显示。</div></section>
+
+<section class="container fade" id="examples">
+  <h2 class="title">服务示例</h2>
+  <p class="sub">每个板块都有示例，方便客户快速判断自己需要哪种服务。</p>
+  <div class="cards" id="exampleList"></div>
+</section>
+
+<section class="container fade" id="pricing">
+  <h2 class="title">明晰收费标准</h2>
+  <p class="sub">价格按服务类型、页数、难度、修改次数和截止时间确定，定金可抵扣尾款。</p>
+  <div class="cards" id="pricingList"></div>
+  <div class="notice" id="pricingNote"></div>
+</section>
+
 <section class="container fade" id="order"><h2 class="title">填写需求</h2><p class="sub">邮箱为选填。提交后会自动生成专属进度链接，并展示收款码。</p><div class="box"><form id="orderForm" onsubmit="return false;"><div class="grid">
 <div><label>称呼</label><input id="name" name="name" placeholder="例如：张同学" required></div><div><label>联系方式</label><input id="contact" name="contact" placeholder="微信 / QQ / 手机号" required></div>
 <div><label>邮箱（选填）</label><input id="email" name="email" placeholder="用于接收文件或联系，可不填"></div><div><label>截止时间</label><input id="deadline" name="deadline" placeholder="例如：明天晚上"></div>
@@ -24,5 +38,38 @@ function showFade(){document.querySelectorAll(".fade").forEach(el=>{if(el.getBou
 async function copyText(t){try{await navigator.clipboard.writeText(t);alert("已复制链接")}catch(e){prompt("复制这个链接保存：",t)}}
 function val(id){const el=document.getElementById(id);return String((el&&el.value)||"").trim()}
 function loading(b){const btn=document.getElementById("submitOrderBtn");btn.disabled=!!b;btn.textContent=b?"正在提交，请稍等...":"提交需求并生成进度链接"}
-async function submitOrder(){loading(true);const data={name:val("name"),contact:val("contact"),email:val("email"),service:val("service"),deadline:val("deadline"),style:val("style"),details:val("details")};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请把称呼、联系方式、服务类型和具体需求填写完整。";loading(false);return}result.className="result success";result.textContent="正在提交订单，请稍等...";try{const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),20000);const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),signal:controller.signal});clearTimeout(timeoutId);const res=await r.json();if(!r.ok||!res.success)throw new Error(res.message||"提交失败");const o=res.order,link=location.origin+o.trackPath;result.className="result success";alert("订单已提交成功！请复制并保存订单号："+o.orderNo+"，方便后续查询进度。");result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，定金可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;document.getElementById("orderForm").reset()}catch(err){result.className="result error";result.innerHTML=`提交失败：${err.name==="AbortError"?"后端响应超时，请稍后再试":err.message}<br>也可以直接联系微信 17781762502。`}finally{loading(false)}}
+async function submitOrder(){loading(true);const data={name:val("name"),contact:val("contact"),email:val("email"),service:val("service"),deadline:val("deadline"),style:val("style"),details:val("details")};if(!data.name||!data.contact||!data.service||!data.details){result.className="result error";result.textContent="请把称呼、联系方式、服务类型和具体需求填写完整。";loading(false);return}result.className="result success";result.textContent="正在提交订单，请稍等...";try{const controller=new AbortController();const timeoutId=setTimeout(()=>controller.abort(),20000);const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data),signal:controller.signal});clearTimeout(timeoutId);const res=await r.json();if(!r.ok||!res.success)throw new Error(res.message||"提交失败");const o=res.order,link=location.origin+o.trackPath;result.className="result success";result.innerHTML=`<b>提交成功！</b>你的专属订单链接已生成：<div class="code">${link}</div><button type="button" onclick="copyText('${link}')">复制订单链接</button> <a class="btn" style="background:#10b981;color:white" href="${o.trackPath}">打开进度页并支付定金</a><p style="margin-top:12px">本单定金：<b>${o.deposit}元</b>，定金可抵扣尾款。付款建议备注：${o.orderNo}</p><div class="paygrid"><div class="paycard"><b>微信支付</b><img src="/assets/wechatpay.jpg"></div><div class="paycard"><b>支付宝</b><img src="/assets/alipay.jpg"></div></div>`;document.getElementById("orderForm").reset()}catch(err){result.className="result error";result.innerHTML=`提交失败：${err.name==="AbortError"?"后端响应超时，请稍后再试":err.message}<br>也可以直接联系微信 17781762502。`}finally{loading(false)}}
+
+function esc2(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+async function loadContentSections(){
+  try{
+    const r=await fetch("/api/site-content");
+    const d=await r.json();
+    const ex=document.getElementById("exampleList");
+    if(ex){
+      ex.innerHTML=(d.examples||[]).map(e=>`
+        <div class="card">
+          <h3>${esc2(e.title)}</h3>
+          <p><b>${esc2(e.scene)}</b></p>
+          <p>${esc2(e.desc)}</p>
+          <ul style="padding-left:18px;color:#475569">${(e.items||[]).map(i=>`<li>${esc2(i)}</li>`).join("")}</ul>
+        </div>`).join("");
+    }
+    const pr=document.getElementById("pricingList");
+    if(pr){
+      pr.innerHTML=(d.pricing||[]).map(p=>`
+        <div class="card">
+          <h3>${esc2(p.name)}</h3>
+          <p style="font-size:24px;color:#2563eb;font-weight:900">${esc2(p.price)}</p>
+          <p>定金：<b>${esc2(p.deposit)}</b></p>
+          <p>适合：${esc2(p.scene)}</p>
+          <ul style="padding-left:18px;color:#475569">${(p.includes||[]).map(i=>`<li>${esc2(i)}</li>`).join("")}</ul>
+        </div>`).join("");
+    }
+    const note=document.getElementById("pricingNote");
+    if(note) note.textContent=d.pricingNote||"";
+  }catch(e){}
+}
+loadContentSections();
+
 </script></body></html>
