@@ -180,7 +180,7 @@
       "slug": "study-web",
       "name": "学习计划网页",
       "desc": "适合期末复习计划、每日打卡、个人主页、接单展示页。",
-      "intro": "学习计划网页适合把期末复习安排、每日任务、打卡进度做成手机可打开的小网站。可以用于高数、线代、大学物理、电路等期末复习，也可以做每日打卡、健身打卡、背单词计划等。下方展示两个真实风格案例，图片会直接完整展示。",
+      "intro": "学习计划网页适合把期末复习安排、每日任务、打卡进度做成手机和电脑都能打开的小网站。可以用于期末复习、每日打卡、健身打卡、背单词计划等。下方案例支持左右翻页、打开原图和下载原图，方便客户更清晰查看。",
       "tags": [
         "网页制作",
         "每日打卡",
@@ -201,23 +201,39 @@
       "examples": [
         {
           "title": "期末复习计划网站示例",
-          "desc": "蓝色清爽风格，适合多科复习计划、每日任务安排、学习策略、云同步和打卡记录展示。",
-          "image": "/assets/examples/study-web-blue-example.png",
+          "desc": "适合多科期末复习计划、每日任务安排、复习重点、云同步和进度展示。支持左右翻页查看多张示例图。",
+          "image": "/assets/examples/study-web-exam-main.png",
+          "images": [
+            {
+              "src": "/assets/examples/study-web-exam-main.png",
+              "title": "期末复习计划网站主图"
+            },
+            {
+              "src": "/assets/examples/study-web-exam-extra.png",
+              "title": "期末复习计划补充展示"
+            }
+          ],
           "items": [
-            "整体进度统计",
-            "每日复习任务",
+            "多天复习计划展示",
+            "每日任务分区",
             "云同步与导出",
             "适合期末冲刺复习"
           ]
         },
         {
           "title": "每日打卡复习网站示例",
-          "desc": "暖色卡片风格，适合长期复习计划、打卡记录、完成率统计和个性化主题展示。",
-          "image": "/assets/examples/study-web-mimi-example.png",
+          "desc": "适合每日任务打卡、临时任务添加、完成率统计和长期坚持计划。支持打开原图和下载原图。",
+          "image": "/assets/examples/study-web-checkin-new.jpeg",
+          "images": [
+            {
+              "src": "/assets/examples/study-web-checkin-new.jpeg",
+              "title": "每日灵活计划打卡表"
+            }
+          ],
           "items": [
             "每日任务打卡",
             "完成率统计",
-            "个性化主题展示",
+            "灵活添加任务",
             "适合长期坚持计划"
           ]
         }
