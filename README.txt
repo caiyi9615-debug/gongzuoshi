@@ -60,3 +60,10 @@ Render 自动重新部署后，打开网站 Ctrl+F5 强制刷新。
    package.json
    README.txt
    siteContent.json
+
+
+本次修复：
+1. 修复 Render 报错：Identifier 'contentPath' has already been declared。
+2. 已删除重复的 siteContent 内容接口声明。
+3. 已通过 node --check 检查 server.js 语法。
+4. 保留项目详情页 /service/:slug、内容管理 /admin-content 和图片链接案例功能。
